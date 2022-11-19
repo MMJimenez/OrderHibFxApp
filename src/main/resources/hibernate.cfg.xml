@@ -8,6 +8,8 @@
         <property name="hibernate.connection.username">newuser</property>
         <property name="hibernate.connection.password">newuser</property>
 
+        <property name="current_session_context_class">thread</property>
+
         <property name="hibernate.show_sql">true</property>
         <mapping class="com.example.orderhibfx.models.Client"/>
         <mapping class="com.example.orderhibfx.models.Item"/>
