@@ -1,33 +1,33 @@
 package com.example.orderhibfx.models;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idproduct")
-    private int idproduct;
+    @Column(name = "id")
+    public int id;
     @Basic
     @Column(name = "name")
-    private String name;
+    public String name;
+    @Basic
+    @Column(name = "type")
+    public String type;
     @Basic
     @Column(name = "price")
-    private Double price;
+    public Double price;
     @Basic
-    @Column(name = "stock")
-    private Integer stock;
-    @OneToMany(mappedBy = "productByProduct")
-    private Collection<com.example.orderhibfx.models.Item> itemsByIdproduct;
+    @Column(name = "availibity")
+    public Byte availibity;
 
-    public int getIdproduct() {
-        return idproduct;
+    public int getId() {
+        return id;
     }
 
-    public void setIdproduct(int idproduct) {
-        this.idproduct = idproduct;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -38,6 +38,14 @@ public class Product {
         this.name = name;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public Double getPrice() {
         return price;
     }
@@ -46,12 +54,12 @@ public class Product {
         this.price = price;
     }
 
-    public Integer getStock() {
-        return stock;
+    public Byte getAvailibity() {
+        return availibity;
     }
 
-    public void setStock(Integer stock) {
-        this.stock = stock;
+    public void setAvailibity(Byte availibity) {
+        this.availibity = availibity;
     }
 
     @Override
@@ -59,19 +67,11 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return idproduct == product.idproduct && Objects.equals(name, product.name) && Objects.equals(price, product.price) && Objects.equals(stock, product.stock);
+        return id == product.id && Objects.equals(name, product.name) && Objects.equals(type, product.type) && Objects.equals(price, product.price) && Objects.equals(availibity, product.availibity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idproduct, name, price, stock);
-    }
-
-    public Collection<com.example.orderhibfx.models.Item> getItemsByIdproduct() {
-        return itemsByIdproduct;
-    }
-
-    public void setItemsByIdproduct(Collection<com.example.orderhibfx.models.Item> itemsByIdproduct) {
-        this.itemsByIdproduct = itemsByIdproduct;
+        return Objects.hash(id, name, type, price, availibity);
     }
 }

@@ -1,44 +1,42 @@
 package com.example.orderhibfx.dao;
 
-import com.example.orderhibfx.models.Client;
-import com.example.orderhibfx.utils.HibernateUtil;
+import com.example.orderhibfx.models.Request;
 import com.example.orderhibfx.utils.DAO;
-
+import com.example.orderhibfx.utils.HibernateUtil;
+import com.mysql.cj.xdevapi.Client;
 import org.hibernate.Transaction;
 
-
-public class ClientDAO implements DAO<Client> {
-
+public class RequestDAO implements DAO<Request> {
     @Override
-    public void save(Client client) {
+    public void save(Request request) {
         try (var s = HibernateUtil.getSessionFactory().openSession()) {
             Transaction t = s.beginTransaction();
-            s.save(client);
+            s.save(request);
             t.commit();
         }
     }
 
     @Override
-    public void update(Client client) {
+    public void update(Request request) {
         try (var s = HibernateUtil.getSessionFactory().openSession()) {
             Transaction t = s.beginTransaction();
-            s.update(client);
+            s.update(request);
             t.commit();
         }
     }
 
     @Override
-    public Client get(Integer id) {
+    public Request get(Integer id) {
         try (var s = HibernateUtil.getSessionFactory().openSession()) {
-            return s.get(Client.class, id);
+            return s.get(Request.class, id);
         }
     }
 
     @Override
-    public void delete(Client client) {
+    public void delete(Request request) {
         try (var s = HibernateUtil.getSessionFactory().openSession()) {
             Transaction t = s.beginTransaction();
-            s.remove(client);
+            s.remove(request);
             t.commit();
         }
     }

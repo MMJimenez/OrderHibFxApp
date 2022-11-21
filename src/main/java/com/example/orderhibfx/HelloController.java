@@ -1,14 +1,9 @@
 package com.example.orderhibfx;
 
-import com.example.orderhibfx.dao.ClientDAO;
-import com.example.orderhibfx.models.Client;
+import com.example.orderhibfx.dao.RequestDAO;
+import com.example.orderhibfx.models.Request;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 
 public class HelloController {
     @FXML
@@ -19,33 +14,13 @@ public class HelloController {
 
         String text = "Hibernate si broken";
 
-//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("hibernate.cfg.xml");
-//        EntityManager entityManager = entityManagerFactory.createEntityManager();
-//        EntityTransaction transaction = entityManager.getTransaction();
-//
-//        try {
-//
-//            transaction.begin();
-//
-//            Client client = new Client();
-//            client.setName("Hibernate");
-//
-//            entityManager.persist(client);
-//
-//            transaction.commit();
-//        } finally {
-//            if (transaction.isActive()) {
-//                transaction.rollback();
-//            }
-//            entityManager.close();
-//            entityManagerFactory.close();
-//        }
-
 
 
         try {
-            var handlerClientes = new ClientDAO();
-            text = handlerClientes.get(1).getName();
+            var handlerClientes = new RequestDAO();
+            Request request = new Request();
+            request = handlerClientes.get(6);
+            text = request.getClient() + " " + request.getDate() + " " + request.getDelivered() + " " + request.getProduct();
         } catch (Exception e) {
             text = "Hibernate si broken";
         } finally {
