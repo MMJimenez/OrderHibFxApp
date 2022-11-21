@@ -3,13 +3,25 @@ package com.example.orderhibfx;
 import com.example.orderhibfx.dao.RequestDAO;
 import com.example.orderhibfx.models.Request;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 
 public class HelloController {
-    @FXML
     private Label welcomeText;
-
     @FXML
+    private DatePicker DATA;
+    @FXML
+    private Button bNOENTREGA;
+    @FXML
+    private Button bMODIFICAR;
+    @FXML
+    private Button bELIMINAR;
+    @FXML
+    private Button bCrear;
+    @FXML
+    private Button bMArcar;
+
     protected void onHelloButtonClick() {
 
         String text = "Hibernate si broken";
@@ -28,4 +40,10 @@ public class HelloController {
         }
 
     }
+    
+
+
+    
+    
+    
 }
