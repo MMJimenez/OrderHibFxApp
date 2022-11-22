@@ -20,4 +20,5 @@ module com.example.orderhibfx {
     exports com.example.orderhibfx.models;
     opens com.example.orderhibfx.dao to javafx.fxml;
     exports com.example.orderhibfx.dao;
+
 }
