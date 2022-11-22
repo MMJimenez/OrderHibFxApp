@@ -41,7 +41,7 @@
          </BorderPane.margin>
          <children>
             <Button mnemonicParsing="false" text="FILTRAR NO ENTREGADOS" />
-            <Button mnemonicParsing="false" onAction="#changeToCreateClient" text="ORDERNAR POR FECHA" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+            <Button mnemonicParsing="false" text="ORDERNAR POR FECHA" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
             <Label text="PEDIDOS" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <font>
                   <Font name="System Bold" size="22.0" />
@@ -65,7 +65,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" text="CREAR PEDIDO">
+            <Button mnemonicParsing="false" onAction="#changeToCreateClient" text="CREAR PEDIDO">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
