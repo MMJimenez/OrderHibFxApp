@@ -6,6 +6,8 @@ import com.example.orderhibfx.utils.HibernateUtil;
 import com.mysql.cj.xdevapi.Client;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
+
 public class RequestDAO implements DAO<Request> {
     @Override
     public void save(Request request) {
@@ -38,6 +40,14 @@ public class RequestDAO implements DAO<Request> {
             Transaction t = s.beginTransaction();
             s.remove(request);
             t.commit();
+        }
+    }
+
+    //TODO: no estaba en la interfaz. Habría que ponerla
+    public ArrayList<Request> getAll(String command){
+        try(var s = HibernateUtil.getSessionFactory().openSession()){
+            var q = s.createQuery("from Request"+command);
+            return (ArrayList<Request>) q.list();
         }
     }
 }
