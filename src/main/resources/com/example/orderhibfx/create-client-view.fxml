@@ -15,7 +15,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="773.0" prefWidth="1123.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.orderhibfx.CreateClientController">
    <center>
-      <TableView prefHeight="269.0" prefWidth="520.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableProduct" prefHeight="269.0" prefWidth="520.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn prefWidth="75.0" text="Id" />
           <TableColumn prefWidth="98.0" text="Nombre" />
@@ -67,14 +67,14 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#changeToMainTable" prefWidth="112.0" text="CREAR PEDIDO" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#createRequest" prefWidth="112.0" text="CREAR PEDIDO" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
             <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#changeToMainTable" text="CANCELAR" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
             <Label text="Nombre del Cliente: " GridPane.halignment="RIGHT">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
             </Label>
-            <TextField maxWidth="233.0" prefWidth="233.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+            <TextField fx:id="clientField" maxWidth="233.0" prefWidth="233.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
             <ChoiceBox maxWidth="233.0" prefWidth="233.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
          </children>
          <BorderPane.margin>

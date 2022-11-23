@@ -1,6 +1,10 @@
 package com.example.orderhibfx.utils;
 
 
+import com.example.orderhibfx.models.Request;
+
+import java.util.ArrayList;
+
 //DAO generico para ambas clases, Mensajes y Usuario
 public interface DAO<T> {
 
@@ -8,4 +12,11 @@ public interface DAO<T> {
     void update(T object);
     T get(Integer id);
     void delete(T object);
+    ArrayList<T> getAll();
+    ArrayList<Request> getAllByClient();
+    ArrayList<Request> getAllByDate();
+    ArrayList<Request> getAllNotDelivered();
+    ArrayList<Request> getAllLastWeek();
+    ArrayList<Request> getAllLastMonth();
+    ArrayList<Request> getAllLastYear();
 }
