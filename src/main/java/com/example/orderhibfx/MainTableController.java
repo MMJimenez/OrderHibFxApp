@@ -69,7 +69,7 @@ public class MainTableController implements Initializable {
         RequestDAO requestDAO = new RequestDAO();
 
         tableRequest.getItems().clear();
-        tableRequest.getItems().addAll(requestDAO.getAll(""));
+        tableRequest.getItems().addAll(requestDAO.getAll());
     }
 
 }

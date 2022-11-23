@@ -43,11 +43,61 @@ public class RequestDAO implements DAO<Request> {
         }
     }
 
-    //TODO: no estaba en la interfaz. Habría que ponerla
-    public ArrayList<Request> getAll(String command){
+    @Override
+    public ArrayList<Request> getAll() {
         try(var s = HibernateUtil.getSessionFactory().openSession()){
-            var q = s.createQuery("from Request"+command);
+            var q = s.createQuery("from Request");
             return (ArrayList<Request>) q.list();
         }
     }
+
+    @Override
+    public ArrayList<Request> getAllByClient() {
+        try(var s = HibernateUtil.getSessionFactory().openSession()){
+            var q = s.createQuery("from Request as rq order by rq.client");
+            return (ArrayList<Request>) q.list();
+        }
+    }
+
+    @Override
+    public ArrayList<Request> getAllByDate() {
+        try(var s = HibernateUtil.getSessionFactory().openSession()){
+            var q = s.createQuery("from Request as rq order by rq.date");
+            return (ArrayList<Request>) q.list();
+        }
+    }
+
+    @Override
+    public ArrayList<Request> getAllNotDelivered() {
+        try(var s = HibernateUtil.getSessionFactory().openSession()){
+            var q = s.createQuery("from Request as rq where rq.delivered = 0");
+            return (ArrayList<Request>) q.list();
+        }
+    }
+
+    @Override
+    public ArrayList<Request> getAllLastWeek() {
+        try(var s = HibernateUtil.getSessionFactory().openSession()){
+            var q = s.createQuery("from Request as rq where rq.date >= current_date-7");
+            return (ArrayList<Request>) q.list();
+        }
+    }
+
+    @Override
+    public ArrayList<Request> getAllLastMonth() {
+        try(var s = HibernateUtil.getSessionFactory().openSession()){
+            var q = s.createQuery("from Request as rq where rq.date >= current_date-30");
+            return (ArrayList<Request>) q.list();
+        }
+    }
+
+    @Override
+    public ArrayList<Request> getAllLastYear() {
+        try(var s = HibernateUtil.getSessionFactory().openSession()){
+            var q = s.createQuery("from Request as rq where rq.date >= current_date-365");
+            return (ArrayList<Request>) q.list();
+        }
+    }
+
+
 }
