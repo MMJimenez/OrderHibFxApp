@@ -14,7 +14,7 @@ public class MainApplication extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("main-table-view.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setFullScreen(true);
+            //stage.setFullScreen(true);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();

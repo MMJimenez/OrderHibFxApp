@@ -81,13 +81,13 @@
       </GridPane>
    </bottom>
    <center>
-      <TableView prefHeight="269.0" prefWidth="520.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" prefHeight="269.0" prefWidth="520.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="Id" />
-          <TableColumn prefWidth="98.0" text="Nombre" />
-            <TableColumn minWidth="0.0" prefWidth="141.0" text="Tipo" />
-            <TableColumn minWidth="0.0" prefWidth="158.0" text="Precio" />
-            <TableColumn prefWidth="353.0" text="Disponible" />
+          <TableColumn fx:id="columnId" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="columnName" prefWidth="98.0" text="Nombre" />
+            <TableColumn fx:id="columnType" minWidth="0.0" prefWidth="141.0" text="Tipo" />
+            <TableColumn fx:id="columnPrice" minWidth="0.0" prefWidth="158.0" text="Precio" />
+            <TableColumn fx:id="columnAvaliable" prefWidth="353.0" text="Disponible" />
         </columns>
       </TableView>
    </center>

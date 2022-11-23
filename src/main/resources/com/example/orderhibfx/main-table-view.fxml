@@ -68,11 +68,11 @@
    <center>
       <TableView fx:id="tableRequest" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="551.0" BorderPane.alignment="CENTER">
          <columns>
-            <TableColumn prefWidth="75.0" text="Id" />
-            <TableColumn prefWidth="98.0" text="Fecha" />
-            <TableColumn minWidth="0.0" prefWidth="141.0" text="Cliente" />
-            <TableColumn minWidth="0.0" prefWidth="158.0" text="Entregado" />
-            <TableColumn prefWidth="353.0" text="Producto" />
+            <TableColumn fx:id="columnId" prefWidth="75.0" text="Id" />
+            <TableColumn fx:id="columnDate" prefWidth="98.0" text="Fecha" />
+            <TableColumn fx:id="columnClientName" minWidth="0.0" prefWidth="141.0" text="Cliente" />
+            <TableColumn fx:id="columnDelivered" minWidth="0.0" prefWidth="158.0" text="Entregado" />
+            <TableColumn fx:id="columnProductName" prefWidth="353.0" text="Producto" />
          </columns>
       </TableView>
    </center>
