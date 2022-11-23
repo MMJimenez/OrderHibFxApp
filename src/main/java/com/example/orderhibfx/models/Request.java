@@ -86,4 +86,5 @@ public class Request {
     public void setProductByProduct(Product productByProduct) {
         this.productByProduct = productByProduct;
     }
+
 }
