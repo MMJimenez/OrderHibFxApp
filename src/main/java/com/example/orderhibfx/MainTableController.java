@@ -40,7 +40,7 @@ public class MainTableController implements Initializable {
     }
 
     @FXML
-    TableView tableRequest;
+    TableView<RequestTable> tableRequest;
 
     @FXML
     TableColumn columnClientName;
@@ -52,7 +52,7 @@ public class MainTableController implements Initializable {
     TableColumn columnDelivered;
 
     @FXML
-    TableColumn columnId;
+    private TableColumn columnId;
 
     @FXML
     TableColumn columnProductName;
@@ -69,13 +69,12 @@ public class MainTableController implements Initializable {
         ObservableList<RequestTable> requestsObservableList = FXCollections.observableArrayList(requestsTable);
 
 
+//        tableRequest = new TableView<RequestTable>(requestsObservableList);
+//        //tableRequest.setEditable(false);
+//        tableRequest.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        tableRequest = new TableView<RequestTable>(requestsObservableList);
-        tableRequest.setEditable(false);
-        tableRequest.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-        columnId = new TableColumn("id");
-        columnId.setCellValueFactory(new PropertyValueFactory<RequestTable, String>("id"));
+        //this.columnId = new TableColumn("id");
+        columnId.setCellValueFactory(new PropertyValueFactory("id"));
 
         columnDate = new TableColumn("date");
         columnDate.setCellValueFactory(new PropertyValueFactory<RequestTable, String>("date"));
