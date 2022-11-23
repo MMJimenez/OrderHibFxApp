@@ -16,7 +16,7 @@ public class MainTableController {
     private Parent root;
 
     public void changeToCreateClient(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("create-client-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("create-request-view.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

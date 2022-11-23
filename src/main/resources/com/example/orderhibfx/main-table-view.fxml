@@ -12,20 +12,6 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="773.0" prefWidth="1123.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.orderhibfx.MainTableController">
-   <center>
-      <TableView prefHeight="269.0" prefWidth="520.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn prefWidth="75.0" text="Id" />
-          <TableColumn prefWidth="98.0" text="Fecha" />
-            <TableColumn minWidth="0.0" prefWidth="141.0" text="Cliente" />
-            <TableColumn minWidth="0.0" prefWidth="158.0" text="Entregado" />
-            <TableColumn prefWidth="353.0" text="Producto" />
-        </columns>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </TableView>
-   </center>
    <top>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -70,7 +56,7 @@
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" text="MODIFICAR PEDIDO" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" text="MODIFICAR PEDIDO" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <Button mnemonicParsing="false" text="MARCAR ENTREGADO" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
             <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="ELIMINAR PEDIDO" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
          </children>
@@ -79,4 +65,15 @@
          </BorderPane.margin>
       </GridPane>
    </bottom>
+   <center>
+      <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="551.0" BorderPane.alignment="CENTER">
+         <columns>
+            <TableColumn prefWidth="75.0" text="Id" />
+            <TableColumn prefWidth="98.0" text="Fecha" />
+            <TableColumn minWidth="0.0" prefWidth="141.0" text="Cliente" />
+            <TableColumn minWidth="0.0" prefWidth="158.0" text="Entregado" />
+            <TableColumn prefWidth="353.0" text="Producto" />
+         </columns>
+      </TableView>
+   </center>
 </BorderPane>
