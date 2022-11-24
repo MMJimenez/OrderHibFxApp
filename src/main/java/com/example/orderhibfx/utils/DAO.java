@@ -13,10 +13,4 @@ public interface DAO<T> {
     T get(Integer id);
     void delete(T object);
     ArrayList<T> getAll();
-    ArrayList<Request> getAllByClient();
-    ArrayList<Request> getAllByDate();
-    ArrayList<Request> getAllNotDelivered();
-    ArrayList<Request> getAllLastWeek();
-    ArrayList<Request> getAllLastMonth();
-    ArrayList<Request> getAllLastYear();
 }
