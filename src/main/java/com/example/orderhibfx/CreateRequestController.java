@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -94,10 +95,14 @@ public class CreateRequestController implements Initializable {
     private DatePicker datePicker;
 
     @FXML
+    private ChoiceBox<String> choiceBox;
+
+    @FXML
     private TextField clientField;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        inflateChoiceBox();
 
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -123,5 +128,15 @@ public class CreateRequestController implements Initializable {
 
     private Product getSelectedRow() {
         return tableView.getSelectionModel().getSelectedItem();
+    }
+
+    private void inflateChoiceBox() {
+        RequestDAO requestDAO = new RequestDAO();
+        choiceBox.getItems().addAll(requestDAO.getAllClients());
+    }
+
+    @FXML
+    void addNewClientToChoice(MouseEvent event) {
+
     }
 }

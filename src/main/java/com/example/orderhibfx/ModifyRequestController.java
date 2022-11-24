@@ -12,11 +12,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -61,6 +59,9 @@ public class ModifyRequestController implements Initializable {
     @FXML
     private ChoiceBox<String> choiceBox;
 
+    @FXML
+    private DatePicker datePicker;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DataHolder dataHolder = DataHolder.getInstance();
@@ -104,5 +105,10 @@ public class ModifyRequestController implements Initializable {
     private void updateRequest(Request request) {
         editRequestClient.setText(request.getClient());
         //TODO pablo meteme aqui la fecha
+    }
+
+    @FXML
+    void addNewClientToChoice(MouseEvent event) {
+
     }
 }
