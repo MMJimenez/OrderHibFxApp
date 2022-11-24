@@ -62,7 +62,7 @@
                </GridPane.margin>
             </Label>
             <TextField fx:id="editRequestClient" maxWidth="233.0" prefWidth="233.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
-            <ChoiceBox maxWidth="233.0" prefWidth="233.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+            <ChoiceBox fx:id="choiceBox" maxWidth="233.0" prefWidth="233.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
             <TextField fx:id="editRequestDate" maxWidth="233.0" prefWidth="233.0" GridPane.columnIndex="1" />
             <Label text="Fecha del Pedido:" GridPane.halignment="RIGHT">
                <GridPane.margin>

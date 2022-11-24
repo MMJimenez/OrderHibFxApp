@@ -98,4 +98,11 @@ public class RequestDAO implements DAO<Request> {
             return (ArrayList<Request>) q.list();
         }
     }
+
+    public ArrayList<String> getAllClients() {
+        try(var s = HibernateUtil.getSessionFactory().openSession()){
+            var q = s.createQuery("select distinct rq.client from Request as rq");
+            return (ArrayList<String>) q.list();
+        }
+    }
 }

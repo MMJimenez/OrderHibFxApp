@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -72,6 +73,9 @@ public class MainTableController implements Initializable {
     @FXML
     private TableColumn<Request, String> columnProductName;
 
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -112,9 +116,7 @@ public class MainTableController implements Initializable {
         return tableRequest.getSelectionModel().getSelectedItem();
     }
 
-    private Boolean isRowSelected() {
-        return tableRequest.getSelectionModel().getSelectedItem() != null;
-    }
+
 
     //Colapsa esta clase
     private class RequestProduct implements Serializable {

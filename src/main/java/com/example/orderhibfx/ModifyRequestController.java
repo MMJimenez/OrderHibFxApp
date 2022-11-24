@@ -1,6 +1,7 @@
 package com.example.orderhibfx;
 
 import com.example.orderhibfx.dao.ProductDAO;
+import com.example.orderhibfx.dao.RequestDAO;
 import com.example.orderhibfx.models.Product;
 import com.example.orderhibfx.models.Request;
 import com.example.orderhibfx.utils.DataHolder;
@@ -11,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -56,6 +58,9 @@ public class ModifyRequestController implements Initializable {
     @FXML
     private TextField editRequestClient;
 
+    @FXML
+    private ChoiceBox<String> choiceBox;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DataHolder dataHolder = DataHolder.getInstance();
@@ -64,6 +69,8 @@ public class ModifyRequestController implements Initializable {
         if (request != null) {
             updateRequest(request);
         }
+
+        inflateChoiceBox();
 
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -81,6 +88,17 @@ public class ModifyRequestController implements Initializable {
 
         tableView.getItems().clear();
         tableView.getItems().addAll(productDAO.getAll());
+    }
+
+    private void selectedChoiceBox() {
+        String selected = choiceBox.getSelectionModel().getSelectedItem();
+        editRequestClient.setText(selected);
+    }
+
+
+    private void inflateChoiceBox() {
+        RequestDAO requestDAO = new RequestDAO();
+        choiceBox.getItems().addAll(requestDAO.getAllClients());
     }
 
     private void updateRequest(Request request) {
