@@ -66,8 +66,8 @@
                </GridPane.margin>
             </Button>
             <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#changeToModifyRequest" text="MODIFICAR PEDIDO" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-            <Button mnemonicParsing="false" text="MARCAR ENTREGADO" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="ELIMINAR PEDIDO" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
+            <Button mnemonicParsing="false" onAction="#checkDelivered" text="MARCAR ENTREGADO" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#deleteRequest" text="ELIMINAR PEDIDO" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
          </children>
          <BorderPane.margin>
             <Insets top="40.0" />

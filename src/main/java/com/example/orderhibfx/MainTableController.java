@@ -11,10 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -31,30 +28,7 @@ public class MainTableController implements Initializable {
     private Scene scene;
     private Parent root;
 
-    public void changeToCreateRequest(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("create-request-view.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
-    public void changeToModifyRequest(ActionEvent event) throws IOException {
-        Request request = getSelectedRow();
-
-        if (request != null) {
-            DataHolder dataHolder = DataHolder.getInstance();
-            dataHolder.setData(request);
-
-            Parent root = FXMLLoader.load(getClass().getResource("modify-request-view.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } else {
-            System.out.println("No request selected");
-        }
-    }
 
     @FXML
     private TableView<Request> tableRequest;
@@ -82,6 +56,8 @@ public class MainTableController implements Initializable {
 
     private ArrayList<Request> requestsTableData;
 
+    private String choiceSelected;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         RequestDAO requestDAO = new RequestDAO();
@@ -89,27 +65,15 @@ public class MainTableController implements Initializable {
 
         inflateChoiceBox();
         inflateTable();
-        updateTabla();
+        updateTable();
     }
 
     @FXML
     void showOrderAction(ActionEvent event) {
         RequestDAO requestDAO = new RequestDAO();
-        switch (choiceBox.getValue()) {
-            case "Todos":
-                requestsTableData = requestDAO.getAllByDate();
-                break;
-            case "Hoy":
-                requestsTableData = requestDAO.getAllToday();
-                break;
-            case "Última semana":
-                requestsTableData = requestDAO.getAllLastWeek();
-                break;
-            case "Última año":
-                requestsTableData = requestDAO.getAllLastYear();
-                break;
-        }
-        updateTabla();
+        choiceSelected = choiceBox.getValue();
+
+        updateTable();
     }
 
     private void inflateChoiceBox() {
@@ -119,6 +83,7 @@ public class MainTableController implements Initializable {
         choiceBox.getItems().add("Última mes");
         choiceBox.getItems().add("Última año");
         choiceBox.setValue("Todos");
+        choiceSelected = "Todos";
     }
 
 
@@ -133,9 +98,24 @@ public class MainTableController implements Initializable {
         columnProductName.setCellValueFactory(new PropertyValueFactory("product"));
     }
 
-    private void updateTabla() {
+    private void updateTable() {
         RequestDAO requestDAO = new RequestDAO();
         ProductDAO productDAO = new ProductDAO();
+
+        switch (choiceSelected) {
+            case "Todos":
+                requestsTableData = requestDAO.getAllByDate();
+                break;
+            case "Hoy":
+                requestsTableData = requestDAO.getAllToday();
+                break;
+            case "Última semana":
+                requestsTableData = requestDAO.getAllLastWeek();
+                break;
+            case "Última año":
+                requestsTableData = requestDAO.getAllLastYear();
+                break;
+        }
 
         ArrayList<RequestProduct> requestProductsList = new ArrayList<>();
 
@@ -162,7 +142,68 @@ public class MainTableController implements Initializable {
     void filterAvaliableAction(ActionEvent event) {
         RequestDAO requestDAO = new RequestDAO();
         requestsTableData = requestDAO.getAllNotDelivered();
-        updateTabla();
+        updateTable();
+    }
+
+    public void checkDelivered(ActionEvent event) throws IOException{
+        if (getSelectedRow() == null) {
+            errorMessage();
+        }else {
+            var request = getSelectedRow();
+            request.setDelivered(true);
+            var requestDAO = new RequestDAO();
+            requestDAO.update(request);
+            updateTable();
+        }
+    }
+
+    public void deleteRequest(ActionEvent event) throws IOException{
+        if (getSelectedRow() == null) {
+            errorMessage();
+        }else {
+            Alert important = new Alert(Alert.AlertType.CONFIRMATION);
+            important.setHeaderText("IMPORTANTE");
+            important.setContentText("¿Está seguro de eliminar este pedido?");
+            var confirmation = important.showAndWait();
+            if(confirmation.get() == ButtonType.OK){
+                var request = getSelectedRow();
+                var requestDAO = new RequestDAO();
+                requestDAO.delete(request);
+                updateTable();
+            }
+            important.close();
+        }
+    }
+    public void errorMessage(){
+        Alert fail = new Alert(Alert.AlertType.INFORMATION);
+        fail.setHeaderText("ERROR");
+        fail.setContentText("No hay producto seleccionado");
+        fail.showAndWait();
+    }
+
+    public void changeToCreateRequest(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("create-request-view.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void changeToModifyRequest(ActionEvent event) throws IOException {
+        Request request = getSelectedRow();
+
+        if (request != null) {
+            DataHolder dataHolder = DataHolder.getInstance();
+            dataHolder.setData(request);
+
+            Parent root = FXMLLoader.load(getClass().getResource("modify-request-view.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            errorMessage();
+        }
     }
 
     //Colapsa esta clase
