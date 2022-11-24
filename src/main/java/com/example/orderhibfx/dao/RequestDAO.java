@@ -51,7 +51,6 @@ public class RequestDAO implements DAO<Request> {
         }
     }
 
-    @Override
     public ArrayList<Request> getAllByClient() {
         try(var s = HibernateUtil.getSessionFactory().openSession()){
             var q = s.createQuery("from Request as rq order by rq.client");
@@ -59,7 +58,6 @@ public class RequestDAO implements DAO<Request> {
         }
     }
 
-    @Override
     public ArrayList<Request> getAllByDate() {
         try(var s = HibernateUtil.getSessionFactory().openSession()){
             var q = s.createQuery("from Request as rq order by rq.date");
@@ -67,7 +65,6 @@ public class RequestDAO implements DAO<Request> {
         }
     }
 
-    @Override
     public ArrayList<Request> getAllNotDelivered() {
         try(var s = HibernateUtil.getSessionFactory().openSession()){
             var q = s.createQuery("from Request as rq where rq.delivered = 0");
@@ -75,7 +72,6 @@ public class RequestDAO implements DAO<Request> {
         }
     }
 
-    @Override
     public ArrayList<Request> getAllLastWeek() {
         try(var s = HibernateUtil.getSessionFactory().openSession()){
             var q = s.createQuery("from Request as rq where rq.date >= current_date-7");
@@ -83,7 +79,6 @@ public class RequestDAO implements DAO<Request> {
         }
     }
 
-    @Override
     public ArrayList<Request> getAllLastMonth() {
         try(var s = HibernateUtil.getSessionFactory().openSession()){
             var q = s.createQuery("from Request as rq where rq.date >= current_date-30");
@@ -91,7 +86,6 @@ public class RequestDAO implements DAO<Request> {
         }
     }
 
-    @Override
     public ArrayList<Request> getAllLastYear() {
         try(var s = HibernateUtil.getSessionFactory().openSession()){
             var q = s.createQuery("from Request as rq where rq.date >= current_date-365");
