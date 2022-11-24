@@ -2,9 +2,7 @@ package com.example.orderhibfx;
 
 import com.example.orderhibfx.dao.ProductDAO;
 import com.example.orderhibfx.dao.RequestDAO;
-import com.example.orderhibfx.models.Product;
 import com.example.orderhibfx.models.Request;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,8 +28,16 @@ public class MainTableController implements Initializable {
     private Scene scene;
     private Parent root;
 
-    public void changeToCreateClient(ActionEvent event) throws IOException {
+    public void changeToCreateRequest(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("create-request-view.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void changeToModifyRequest(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("modify-request-view.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

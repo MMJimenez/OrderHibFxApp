@@ -51,12 +51,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#changeToCreateClient" text="CREAR PEDIDO">
+            <Button mnemonicParsing="false" onAction="#changeToCreateRequest" text="CREAR PEDIDO">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" text="MODIFICAR PEDIDO" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#changeToModifyRequest" text="MODIFICAR PEDIDO" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <Button mnemonicParsing="false" text="MARCAR ENTREGADO" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
             <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="ELIMINAR PEDIDO" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
          </children>
