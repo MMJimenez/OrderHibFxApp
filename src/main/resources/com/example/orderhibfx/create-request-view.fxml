@@ -76,7 +76,7 @@
             <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="231.0" GridPane.columnIndex="1" />
             <TextField fx:id="editRequestClient" maxWidth="233.0" prefWidth="233.0" promptText="Añadir nuevo cliente a la lista" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ChoiceBox fx:id="choiceBox" maxWidth="233.0" prefWidth="233.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#addNewClientToChoice" prefHeight="25.0" prefWidth="79.0" text="AÑADIR" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#addNewClientAction" prefHeight="25.0" prefWidth="79.0" text="AÑADIR" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
