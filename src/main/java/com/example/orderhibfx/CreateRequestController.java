@@ -1,5 +1,7 @@
 package com.example.orderhibfx;
 
+import com.example.orderhibfx.dao.ProductDAO;
+import com.example.orderhibfx.models.Product;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,25 +33,41 @@ public class CreateRequestController implements Initializable {
     }
 
     @FXML
-    private TableColumn<?, ?> columnAvaliable;
+    private TableColumn<Product, Boolean> columnAvaliable;
 
     @FXML
-    private TableColumn<?, ?> columnId;
+    private TableColumn<Product, Integer> columnId;
 
     @FXML
-    private TableColumn<?, ?> columnName;
+    private TableColumn<Product, String> columnName;
 
     @FXML
-    private TableColumn<?, ?> columnPrice;
+    private TableColumn<Product, Boolean> columnPrice;
 
     @FXML
-    private TableColumn<?, ?> columnType;
+    private TableColumn<Product, String> columnType;
 
     @FXML
-    private TableView<?> tableView;
+    private TableView<Product> tableView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        columnId.setCellValueFactory(new PropertyValueFactory("id"));
+        columnName.setCellValueFactory(new PropertyValueFactory("name"));
+        columnType.setCellValueFactory(new PropertyValueFactory("type"));
+        columnPrice.setCellValueFactory(new PropertyValueFactory("price"));
+        columnAvaliable.setCellValueFactory(new PropertyValueFactory("availibity"));
+
+        actualizarTabla();
+    }
+
+    private void actualizarTabla() {
+        ProductDAO productDAO = new ProductDAO();
+
+        tableView.getItems().clear();
+        tableView.getItems().addAll(productDAO.getAll());
     }
 }
