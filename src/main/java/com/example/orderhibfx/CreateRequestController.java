@@ -65,7 +65,10 @@ public class CreateRequestController implements Initializable {
             request.setDate(Date.valueOf( datePicker.getValue()));
             request.setDelivered(false);
             request.setId(1);
-            //RequestDAO.save(request);
+
+            RequestDAO requestDAO = new RequestDAO();
+            requestDAO.save(request);
+            changeToMainTable(event);
         }
     }
 
