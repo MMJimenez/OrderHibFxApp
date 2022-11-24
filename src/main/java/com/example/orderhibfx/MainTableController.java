@@ -4,6 +4,7 @@ import com.example.orderhibfx.dao.ProductDAO;
 import com.example.orderhibfx.dao.RequestDAO;
 import com.example.orderhibfx.models.Product;
 import com.example.orderhibfx.models.Request;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,7 +39,7 @@ public class MainTableController implements Initializable {
     }
 
     @FXML
-    private TableView<RequestProduct> tableRequest;
+    private TableView<Request> tableRequest;
 
     @FXML
     private TableColumn<Request, String> columnClientName;
@@ -52,7 +54,7 @@ public class MainTableController implements Initializable {
     private TableColumn<Request, Integer> columnId;
 
     @FXML
-    private TableColumn<Product, String> columnProductName;
+    private TableColumn<Request, String> columnProductName;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -63,7 +65,7 @@ public class MainTableController implements Initializable {
         columnDate.setCellValueFactory(new PropertyValueFactory("date"));
         columnClientName.setCellValueFactory(new PropertyValueFactory("client"));
         columnDelivered.setCellValueFactory(new PropertyValueFactory("delivered"));
-        columnProductName.setCellValueFactory(new PropertyValueFactory("name"));
+        columnProductName.setCellValueFactory(new PropertyValueFactory("product"));
 
         actualizarTabla();
     }
@@ -81,23 +83,23 @@ public class MainTableController implements Initializable {
                     request.getDate(),
                     request.getClient(),
                     request.getDelivered(),
-                    productDAO.get(request.getProduct())
+                    productDAO.get(request.getProduct()).getName()
             );
             requestProductsList.add(requestProduct);
         }
 
         tableRequest.getItems().clear();
-        tableRequest.getItems().addAll(requestProductsList);
+        tableRequest.getItems().addAll(requests);
     }
 
-    private class RequestProduct {
+    private class RequestProduct implements Serializable {
         private Integer id;
         private Date date;
         private String client;
         private Boolean delivered;
-        private Product product;
+        private String product;
 
-        public RequestProduct(Integer id, Date date, String client, Boolean delivered, Product product) {
+        public RequestProduct(Integer id, Date date, String client, Boolean delivered, String product) {
             this.id = id;
             this.date = date;
             this.client = client;
@@ -137,11 +139,11 @@ public class MainTableController implements Initializable {
             this.delivered = delivered;
         }
 
-        public Product getProduct() {
+        public String getProduct() {
             return product;
         }
 
-        public void setProduct(Product product) {
+        public void setProduct(String product) {
             this.product = product;
         }
     }
