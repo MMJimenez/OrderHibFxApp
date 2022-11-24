@@ -56,7 +56,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeToMainTable" prefWidth="115.0" text="ACEPTAR" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#modifyRequest" prefWidth="115.0" text="ACEPTAR" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeToMainTable" prefWidth="115.0" text="CANCELAR" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
             <Label text="Nombre del Cliente: " GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>

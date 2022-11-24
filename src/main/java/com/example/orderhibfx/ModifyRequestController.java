@@ -110,7 +110,7 @@ public class ModifyRequestController implements Initializable {
 
     private void updateRequest() {
         choiceBox.setValue(requestToModify.getClient());
-        //TODO pablo meteme aqui la fecha
+        datePicker.setValue(requestToModify.getDate().toLocalDate());
     }
 
     @FXML
@@ -126,7 +126,7 @@ public class ModifyRequestController implements Initializable {
         return tableView.getSelectionModel().getSelectedItem();
     }
 
-    public void createRequest(ActionEvent event) throws IOException {
+    public void modifyRequest(ActionEvent event) throws IOException {
 
         if (requestToModify != null) {
             if (choiceBox.getSelectionModel().getSelectedItem().trim().isEmpty()) {
