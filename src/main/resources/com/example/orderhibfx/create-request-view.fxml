@@ -55,7 +55,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#createRequest" prefWidth="115.0" text="ACEPTAR" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#changeToMainTable" prefWidth="115.0" text="ACEPTAR" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeToMainTable" prefWidth="115.0" text="CANCELAR" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
             <Label text="Nombre del Cliente: " GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>
@@ -69,12 +69,12 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Label>
-            <Button mnemonicParsing="false" onAction="#changeToMainTable" text="HOY" GridPane.columnIndex="2">
+            <Button mnemonicParsing="false" onAction="#actualDate" text="HOY" GridPane.columnIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
             </Button>
-            <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="233.0" GridPane.columnIndex="1" />
+            <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="231.0" GridPane.columnIndex="1" />
          </children>
          <BorderPane.margin>
             <Insets top="40.0" />
