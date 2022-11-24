@@ -41,34 +41,4 @@ public class ProductDAO implements DAO {
     public void delete(Object object) {
 
     }
-
-    @Override
-    public ArrayList<Request> getAllByClient() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Request> getAllByDate() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Request> getAllNotDelivered() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Request> getAllLastWeek() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Request> getAllLastMonth() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Request> getAllLastYear() {
-        return null;
-    }
 }

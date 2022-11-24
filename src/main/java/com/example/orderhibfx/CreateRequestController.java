@@ -7,8 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,6 +28,23 @@ public class CreateRequestController implements Initializable {
         stage.show();
     }
 
+    public void createRequest(ActionEvent event) throws IOException {
+
+        if (clientField.getText().trim().isEmpty()) {
+            Alert fail = new Alert(Alert.AlertType.INFORMATION);
+            fail.setHeaderText("ERROR");
+            fail.setContentText("No se ha definido cliente");
+            fail.showAndWait();
+
+        } else if(datePicker.getValue() == null){
+            Alert fail = new Alert(Alert.AlertType.INFORMATION);
+            fail.setHeaderText("ERROR");
+            fail.setContentText("No se ha definido fecha");
+            fail.showAndWait();
+        }
+
+    }
+
     @FXML
     private TableColumn<?, ?> columnAvaliable;
 
@@ -46,6 +62,12 @@ public class CreateRequestController implements Initializable {
 
     @FXML
     private TableView<?> tableView;
+
+    @FXML
+    private DatePicker datePicker;
+
+    @FXML
+    private TextField clientField;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
