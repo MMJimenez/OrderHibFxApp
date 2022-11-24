@@ -83,7 +83,7 @@ public class ModifyRequestController implements Initializable {
         }
 
         inflateTable();
-        actualizarTabla();
+        updateTabla();
     }
 
     private void inflateTable() {
@@ -96,7 +96,7 @@ public class ModifyRequestController implements Initializable {
         columnAvaliable.setCellValueFactory(new PropertyValueFactory("availibity"));
     }
 
-    private void actualizarTabla() {
+    private void updateTabla() {
         ProductDAO productDAO = new ProductDAO();
 
         tableView.getItems().clear();

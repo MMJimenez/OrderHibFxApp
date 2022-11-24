@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -73,7 +74,11 @@ public class MainTableController implements Initializable {
     @FXML
     private TableColumn<Request, String> columnProductName;
 
+    @FXML
+    private Button btnShowOrder;
 
+    @FXML
+    private ChoiceBox<?> choiceBox;
 
 
     @Override
@@ -87,10 +92,10 @@ public class MainTableController implements Initializable {
         columnDelivered.setCellValueFactory(new PropertyValueFactory("delivered"));
         columnProductName.setCellValueFactory(new PropertyValueFactory("product"));
 
-        actualizarTabla();
+        updateTabla();
     }
 
-    private void actualizarTabla() {
+    private void updateTabla() {
         RequestDAO requestDAO = new RequestDAO();
         ProductDAO productDAO = new ProductDAO();
 

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -18,21 +19,29 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <BorderPane.margin>
             <Insets bottom="40.0" />
          </BorderPane.margin>
          <children>
-            <Button mnemonicParsing="false" text="FILTRAR NO ENTREGADOS" />
-            <Button mnemonicParsing="false" text="ORDERNAR POR FECHA" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-            <Label text="PEDIDOS" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <Button mnemonicParsing="false" text="FILTRAR NO ENTREGADOS" GridPane.rowIndex="1" />
+            <Button fx:id="btnShowOrder" mnemonicParsing="false" text="VER" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Label text="PEDIDOS" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
+            <ChoiceBox fx:id="choiceBox" maxWidth="233.0" prefWidth="233.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </ChoiceBox>
          </children>
       </GridPane>
    </top>

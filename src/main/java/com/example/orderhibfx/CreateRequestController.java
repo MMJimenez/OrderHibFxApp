@@ -111,7 +111,7 @@ public class CreateRequestController implements Initializable {
         inflateChoiceBox();
 
         inflateTable();
-        actualizarTabla();
+        updateTabla();
     }
 
     private void inflateTable() {
@@ -125,7 +125,7 @@ public class CreateRequestController implements Initializable {
     }
 
 
-    private void actualizarTabla() {
+    private void updateTabla() {
         ProductDAO productDAO = new ProductDAO();
 
         tableView.getItems().clear();

@@ -67,7 +67,14 @@ public class RequestDAO implements DAO<Request> {
 
     public ArrayList<Request> getAllNotDelivered() {
         try(var s = HibernateUtil.getSessionFactory().openSession()){
-            var q = s.createQuery("from Request as rq where rq.delivered = 0");
+            var q = s.createQuery("from Request as rq where rq.delivered = false");
+            return (ArrayList<Request>) q.list();
+        }
+    }
+
+    public ArrayList<Request> getAllDelivered() {
+        try(var s = HibernateUtil.getSessionFactory().openSession()){
+            var q = s.createQuery("from Request as rq where rq.delivered = true ");
             return (ArrayList<Request>) q.list();
         }
     }
