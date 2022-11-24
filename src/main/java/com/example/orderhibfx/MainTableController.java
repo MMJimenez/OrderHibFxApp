@@ -3,6 +3,7 @@ package com.example.orderhibfx;
 import com.example.orderhibfx.dao.ProductDAO;
 import com.example.orderhibfx.dao.RequestDAO;
 import com.example.orderhibfx.models.Request;
+import com.example.orderhibfx.utils.DataHolder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,11 +38,20 @@ public class MainTableController implements Initializable {
     }
 
     public void changeToModifyRequest(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("modify-request-view.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        Request request = getSelectedRow();
+
+        if (request != null) {
+            DataHolder dataHolder = DataHolder.getInstance();
+            dataHolder.setData(request);
+
+            Parent root = FXMLLoader.load(getClass().getResource("modify-request-view.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            System.out.println("No request selected");
+        }
     }
 
     @FXML
@@ -98,6 +108,15 @@ public class MainTableController implements Initializable {
         tableRequest.getItems().addAll(requests);
     }
 
+    private Request getSelectedRow() {
+        return tableRequest.getSelectionModel().getSelectedItem();
+    }
+
+    private Boolean isRowSelected() {
+        return tableRequest.getSelectionModel().getSelectedItem() != null;
+    }
+
+    //Colapsa esta clase
     private class RequestProduct implements Serializable {
         private Integer id;
         private Date date;

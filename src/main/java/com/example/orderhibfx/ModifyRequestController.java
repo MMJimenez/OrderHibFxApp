@@ -2,6 +2,8 @@ package com.example.orderhibfx;
 
 import com.example.orderhibfx.dao.ProductDAO;
 import com.example.orderhibfx.models.Product;
+import com.example.orderhibfx.models.Request;
+import com.example.orderhibfx.utils.DataHolder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -50,8 +53,17 @@ public class ModifyRequestController implements Initializable {
     @FXML
     private TableView<Product> tableView;
 
+    @FXML
+    private TextField editRequestClient;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        DataHolder dataHolder = DataHolder.getInstance();
+        Request request = (Request) dataHolder.getData();
+        Request request2 = (Request) dataHolder.getData();
+        if (request != null) {
+            updateRequest(request);
+        }
 
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -69,5 +81,10 @@ public class ModifyRequestController implements Initializable {
 
         tableView.getItems().clear();
         tableView.getItems().addAll(productDAO.getAll());
+    }
+
+    private void updateRequest(Request request) {
+        editRequestClient.setText(request.getClient());
+        //TODO pablo meteme aqui la fecha
     }
 }
