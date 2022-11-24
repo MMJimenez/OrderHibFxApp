@@ -60,6 +60,7 @@ public class MainTableController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         RequestDAO requestDAO = new RequestDAO();
         requestsTableData = requestDAO.getAllByDate();
 
@@ -100,7 +101,6 @@ public class MainTableController implements Initializable {
 
     private void updateTable() {
         RequestDAO requestDAO = new RequestDAO();
-        ProductDAO productDAO = new ProductDAO();
 
         switch (choiceSelected) {
             case "Todos":
@@ -117,19 +117,6 @@ public class MainTableController implements Initializable {
                 break;
         }
 
-        ArrayList<RequestProduct> requestProductsList = new ArrayList<>();
-
-        for (Request request : requestsTableData) {
-            RequestProduct requestProduct = new RequestProduct(
-                    request.getId(),
-                    request.getDate(),
-                    request.getClient(),
-                    request.getDelivered(),
-                    productDAO.get(request.getProduct()).getName()
-            );
-            requestProductsList.add(requestProduct);
-        }
-
         tableRequest.getItems().clear();
         tableRequest.getItems().addAll(requestsTableData);
     }
@@ -142,7 +129,8 @@ public class MainTableController implements Initializable {
     void filterAvaliableAction(ActionEvent event) {
         RequestDAO requestDAO = new RequestDAO();
         requestsTableData = requestDAO.getAllNotDelivered();
-        updateTable();
+        tableRequest.getItems().clear();
+        tableRequest.getItems().addAll(requestsTableData);
     }
 
     public void checkDelivered(ActionEvent event) throws IOException{
@@ -207,59 +195,4 @@ public class MainTableController implements Initializable {
     }
 
     //Colapsa esta clase
-    private class RequestProduct implements Serializable {
-        private Integer id;
-        private Date date;
-        private String client;
-        private Boolean delivered;
-        private String product;
-
-        public RequestProduct(Integer id, Date date, String client, Boolean delivered, String product) {
-            this.id = id;
-            this.date = date;
-            this.client = client;
-            this.delivered = delivered;
-            this.product = product;
-        }
-
-        public Integer getId() {
-            return id;
-        }
-
-        public void setId(Integer id) {
-            this.id = id;
-        }
-
-        public Date getDate() {
-            return date;
-        }
-
-        public void setDate(Date date) {
-            this.date = date;
-        }
-
-        public String getClient() {
-            return client;
-        }
-
-        public void setClient(String client) {
-            this.client = client;
-        }
-
-        public Boolean getDelivered() {
-            return delivered;
-        }
-
-        public void setDelivered(Boolean delivered) {
-            this.delivered = delivered;
-        }
-
-        public String getProduct() {
-            return product;
-        }
-
-        public void setProduct(String product) {
-            this.product = product;
-        }
-    }
 }
