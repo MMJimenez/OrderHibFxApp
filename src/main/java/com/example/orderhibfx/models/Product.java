@@ -20,7 +20,7 @@ public class Product {
     public Double price;
     @Basic
     @Column(name = "availibity")
-    public Byte availibity;
+    public Boolean availibity;
 
     public int getId() {
         return id;
@@ -54,11 +54,11 @@ public class Product {
         this.price = price;
     }
 
-    public Byte getAvailibity() {
+    public Boolean getAvailibity() {
         return availibity;
     }
 
-    public void setAvailibity(Byte availibity) {
+    public void setAvailibity(Boolean availibity) {
         this.availibity = availibity;
     }
 

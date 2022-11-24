@@ -1,6 +1,8 @@
 package com.example.orderhibfx;
 
+import com.example.orderhibfx.dao.ProductDAO;
 import com.example.orderhibfx.dao.RequestDAO;
+import com.example.orderhibfx.models.Product;
 import com.example.orderhibfx.models.Request;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -34,7 +37,7 @@ public class MainTableController implements Initializable {
     }
 
     @FXML
-    private TableView<Request> tableRequest;
+    private TableView<RequestProduct> tableRequest;
 
     @FXML
     private TableColumn<Request, String> columnClientName;
@@ -43,13 +46,13 @@ public class MainTableController implements Initializable {
     private TableColumn<Request, Date> columnDate;
 
     @FXML
-    private TableColumn<Request, Integer> columnDelivered;
+    private TableColumn<Request, Boolean> columnDelivered;
 
     @FXML
     private TableColumn<Request, Integer> columnId;
 
     @FXML
-    private TableColumn<Request, Integer> columnProductName;
+    private TableColumn<Product, String> columnProductName;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -60,16 +63,86 @@ public class MainTableController implements Initializable {
         columnDate.setCellValueFactory(new PropertyValueFactory("date"));
         columnClientName.setCellValueFactory(new PropertyValueFactory("client"));
         columnDelivered.setCellValueFactory(new PropertyValueFactory("delivered"));
-        columnProductName.setCellValueFactory(new PropertyValueFactory("product"));
+        columnProductName.setCellValueFactory(new PropertyValueFactory("name"));
 
         actualizarTabla();
     }
 
     private void actualizarTabla() {
         RequestDAO requestDAO = new RequestDAO();
+        ProductDAO productDAO = new ProductDAO();
+
+        ArrayList<Request> requests = requestDAO.getAll();
+        ArrayList<RequestProduct> requestProductsList = new ArrayList<>();
+
+        for (Request request : requests) {
+            RequestProduct requestProduct = new RequestProduct(
+                    request.getId(),
+                    request.getDate(),
+                    request.getClient(),
+                    request.getDelivered(),
+                    productDAO.get(request.getProduct())
+            );
+            requestProductsList.add(requestProduct);
+        }
 
         tableRequest.getItems().clear();
-        tableRequest.getItems().addAll(requestDAO.getAll());
+        tableRequest.getItems().addAll(requestProductsList);
     }
 
+    private class RequestProduct {
+        private Integer id;
+        private Date date;
+        private String client;
+        private Boolean delivered;
+        private Product product;
+
+        public RequestProduct(Integer id, Date date, String client, Boolean delivered, Product product) {
+            this.id = id;
+            this.date = date;
+            this.client = client;
+            this.delivered = delivered;
+            this.product = product;
+        }
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public Date getDate() {
+            return date;
+        }
+
+        public void setDate(Date date) {
+            this.date = date;
+        }
+
+        public String getClient() {
+            return client;
+        }
+
+        public void setClient(String client) {
+            this.client = client;
+        }
+
+        public Boolean getDelivered() {
+            return delivered;
+        }
+
+        public void setDelivered(Boolean delivered) {
+            this.delivered = delivered;
+        }
+
+        public Product getProduct() {
+            return product;
+        }
+
+        public void setProduct(Product product) {
+            this.product = product;
+        }
+    }
 }

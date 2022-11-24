@@ -1,5 +1,7 @@
 package com.example.orderhibfx.models;
 
+import org.hibernate.hql.internal.ast.tree.BooleanLiteralNode;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
@@ -18,7 +20,7 @@ public class Request {
     public String client;
     @Basic
     @Column(name = "delivered")
-    public Byte delivered;
+    public Boolean delivered;
     @Basic
     @Column(name = "product")
     public Integer product;
@@ -50,11 +52,11 @@ public class Request {
         this.client = client;
     }
 
-    public Byte getDelivered() {
+    public Boolean getDelivered() {
         return delivered;
     }
 
-    public void setDelivered(Byte delivered) {
+    public void setDelivered(Boolean delivered) {
         this.delivered = delivered;
     }
 

@@ -24,8 +24,6 @@ public class ProductDAO implements DAO {
         }
     }
 
-
-
     //métodos que no se usan
     @Override
     public void save(Object object) {

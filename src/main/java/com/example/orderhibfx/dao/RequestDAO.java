@@ -98,6 +98,4 @@ public class RequestDAO implements DAO<Request> {
             return (ArrayList<Request>) q.list();
         }
     }
-
-
 }
