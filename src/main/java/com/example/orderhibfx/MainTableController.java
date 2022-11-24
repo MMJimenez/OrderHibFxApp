@@ -78,12 +78,52 @@ public class MainTableController implements Initializable {
     private Button btnShowOrder;
 
     @FXML
-    private ChoiceBox<?> choiceBox;
+    private ChoiceBox<String> choiceBox;
 
+    private ArrayList<Request> requestsTableData;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        RequestDAO requestDAO = new RequestDAO();
+        requestsTableData = requestDAO.getAllByDate();
 
+        inflateChoiceBox();
+        inflateTable();
+        updateTabla();
+    }
+
+    @FXML
+    void showOrderAction(ActionEvent event) {
+        RequestDAO requestDAO = new RequestDAO();
+        switch (choiceBox.getValue()) {
+            case "Todos":
+                requestsTableData = requestDAO.getAllByDate();
+                break;
+            case "Hoy":
+                requestsTableData = requestDAO.getAllToday();
+                break;
+            case "Última semana":
+                requestsTableData = requestDAO.getAllLastWeek();
+                break;
+            case "Última año":
+                requestsTableData = requestDAO.getAllLastYear();
+                break;
+        }
+        updateTabla();
+    }
+
+    private void inflateChoiceBox() {
+        choiceBox.getItems().add("Todos");
+        choiceBox.getItems().add("Hoy");
+        choiceBox.getItems().add("Última semana");
+        choiceBox.getItems().add("Última mes");
+        choiceBox.getItems().add("Última año");
+        choiceBox.setValue("Todos");
+    }
+
+
+
+    private void inflateTable() {
         tableRequest.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         columnId.setCellValueFactory(new PropertyValueFactory("id"));
@@ -91,18 +131,15 @@ public class MainTableController implements Initializable {
         columnClientName.setCellValueFactory(new PropertyValueFactory("client"));
         columnDelivered.setCellValueFactory(new PropertyValueFactory("delivered"));
         columnProductName.setCellValueFactory(new PropertyValueFactory("product"));
-
-        updateTabla();
     }
 
     private void updateTabla() {
         RequestDAO requestDAO = new RequestDAO();
         ProductDAO productDAO = new ProductDAO();
 
-        ArrayList<Request> requests = requestDAO.getAll();
         ArrayList<RequestProduct> requestProductsList = new ArrayList<>();
 
-        for (Request request : requests) {
+        for (Request request : requestsTableData) {
             RequestProduct requestProduct = new RequestProduct(
                     request.getId(),
                     request.getDate(),
@@ -114,14 +151,19 @@ public class MainTableController implements Initializable {
         }
 
         tableRequest.getItems().clear();
-        tableRequest.getItems().addAll(requests);
+        tableRequest.getItems().addAll(requestsTableData);
     }
 
     private Request getSelectedRow() {
         return tableRequest.getSelectionModel().getSelectedItem();
     }
 
-
+    @FXML
+    void filterAvaliableAction(ActionEvent event) {
+        RequestDAO requestDAO = new RequestDAO();
+        requestsTableData = requestDAO.getAllNotDelivered();
+        updateTabla();
+    }
 
     //Colapsa esta clase
     private class RequestProduct implements Serializable {

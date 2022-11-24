@@ -30,8 +30,8 @@
             <Insets bottom="40.0" />
          </BorderPane.margin>
          <children>
-            <Button mnemonicParsing="false" text="FILTRAR NO ENTREGADOS" GridPane.rowIndex="1" />
-            <Button fx:id="btnShowOrder" mnemonicParsing="false" text="VER" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#filterAvaliableAction" text="FILTRAR NO ENTREGADOS" GridPane.rowIndex="1" />
+            <Button fx:id="btnShowOrder" mnemonicParsing="false" onAction="#showOrderAction" text="VER" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
             <Label text="PEDIDOS" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="22.0" />

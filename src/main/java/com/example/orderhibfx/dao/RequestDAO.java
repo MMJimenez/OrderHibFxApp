@@ -79,6 +79,13 @@ public class RequestDAO implements DAO<Request> {
         }
     }
 
+    public ArrayList<Request> getAllToday() {
+        try(var s = HibernateUtil.getSessionFactory().openSession()){
+            var q = s.createQuery("from Request as rq where rq.date = current_date");
+            return (ArrayList<Request>) q.list();
+        }
+    }
+
     public ArrayList<Request> getAllLastWeek() {
         try(var s = HibernateUtil.getSessionFactory().openSession()){
             var q = s.createQuery("from Request as rq where rq.date >= current_date-7");
