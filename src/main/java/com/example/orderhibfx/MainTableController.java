@@ -2,8 +2,11 @@ package com.example.orderhibfx;
 
 import com.example.orderhibfx.dao.ProductDAO;
 import com.example.orderhibfx.dao.RequestDAO;
+import com.example.orderhibfx.models.Product;
 import com.example.orderhibfx.models.Request;
 import com.example.orderhibfx.utils.DataHolder;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -97,6 +100,25 @@ public class MainTableController implements Initializable {
         columnClientName.setCellValueFactory(new PropertyValueFactory("client"));
         columnDelivered.setCellValueFactory(new PropertyValueFactory("delivered"));
         columnProductName.setCellValueFactory(new PropertyValueFactory("product"));
+
+        columnDelivered.setCellValueFactory((var fila) -> {
+            Request request = fila.getValue();
+            var delivered = new ReadOnlyObjectWrapper();
+            if (request.getDelivered()) {
+                delivered.setValue("Sí");
+            } else {
+                delivered.setValue("No");
+            }
+            return delivered;
+        });
+
+        columnProductName.setCellValueFactory((var fila) -> {
+            Request request = fila.getValue();
+            var productName = new ReadOnlyObjectWrapper();
+            ProductDAO productDAO = new ProductDAO();
+            productName.setValue(productDAO.get(request.getProduct()).getName());
+            return productName;
+        });
     }
 
     private void updateTable() {
