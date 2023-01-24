@@ -1,116 +1,151 @@
 package com.example.orderhibfx.dao;
 
+import com.example.orderhibfx.dao.hibernate.ProductDAOHibernate;
+import com.example.orderhibfx.dao.hibernate.RequestDAOHibernate;
+import com.example.orderhibfx.dao.objectdb.ProductDAOObjectDB;
+import com.example.orderhibfx.dao.objectdb.RequestDAOObjectDB;
 import com.example.orderhibfx.models.Request;
 import com.example.orderhibfx.utils.DAO;
+import com.example.orderhibfx.utils.DataBase;
 import com.example.orderhibfx.utils.HibernateUtil;
-import com.mysql.cj.xdevapi.Client;
 import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 
-public class RequestDAO implements DAO<Request> {
+import static com.example.orderhibfx.utils.DataBase.SelectedDB.HIBERNATE;
+import static com.example.orderhibfx.utils.DataBase.SelectedDB.OBJECTDB;
+
+public class RequestDAO extends DataBase implements DAO<Request> {
+
+    public RequestDAO(SelectedDB selectedDB) {
+        setSelectedDB(selectedDB);
+    }
+
     @Override
     public void save(Request request) {
-        try (var s = HibernateUtil.getSessionFactory().openSession()) {
-            Transaction t = s.beginTransaction();
-            s.save(request);
-            t.commit();
+        if (getSelectedDB().equals(HIBERNATE)) {
+            new RequestDAOHibernate().save(request);
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            new RequestDAOObjectDB().save(request);
         }
     }
 
     @Override
     public void update(Request request) {
-        try (var s = HibernateUtil.getSessionFactory().openSession()) {
-            Transaction t = s.beginTransaction();
-            s.update(request);
-            t.commit();
+        if (getSelectedDB().equals(HIBERNATE)) {
+            new RequestDAOHibernate().update(request);
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            new RequestDAOObjectDB().update(request);
         }
     }
 
     @Override
     public Request get(Integer id) {
-        try (var s = HibernateUtil.getSessionFactory().openSession()) {
-            return s.get(Request.class, id);
+        if (getSelectedDB().equals(HIBERNATE)) {
+            return new RequestDAOHibernate().get(id);
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            return new RequestDAOObjectDB().get(id);
         }
+        return null;
     }
 
     @Override
     public void delete(Request request) {
-        try (var s = HibernateUtil.getSessionFactory().openSession()) {
-            Transaction t = s.beginTransaction();
-            s.remove(request);
-            t.commit();
+        if (getSelectedDB().equals(HIBERNATE)) {
+            new RequestDAOHibernate().delete(request);
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            new RequestDAOObjectDB().delete(request);
         }
     }
 
     @Override
     public ArrayList<Request> getAll() {
-        try(var s = HibernateUtil.getSessionFactory().openSession()){
-            var q = s.createQuery("from Request");
-            return (ArrayList<Request>) q.list();
+        if (getSelectedDB().equals(HIBERNATE)) {
+            return new RequestDAOHibernate().getAll();
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            return new RequestDAOObjectDB().getAll();
         }
+        return null;
     }
 
     public ArrayList<Request> getAllByClient() {
-        try(var s = HibernateUtil.getSessionFactory().openSession()){
-            var q = s.createQuery("from Request as rq order by rq.client");
-            return (ArrayList<Request>) q.list();
+        if (getSelectedDB().equals(HIBERNATE)) {
+            return new RequestDAOHibernate().getAllByClient();
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            return new RequestDAOObjectDB().getAllByClient();
         }
+        return null;
     }
 
     public ArrayList<Request> getAllByDate() {
-        try(var s = HibernateUtil.getSessionFactory().openSession()){
-            var q = s.createQuery("from Request as rq order by rq.date");
-            return (ArrayList<Request>) q.list();
+        if (getSelectedDB().equals(HIBERNATE)) {
+            return new RequestDAOHibernate().getAllByDate();
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            return new RequestDAOObjectDB().getAllByDate();
         }
+        return null;
     }
 
     public ArrayList<Request> getAllNotDelivered() {
-        try(var s = HibernateUtil.getSessionFactory().openSession()){
-            var q = s.createQuery("from Request as rq where rq.delivered = false");
-            return (ArrayList<Request>) q.list();
+        if (getSelectedDB().equals(HIBERNATE)) {
+            return new RequestDAOHibernate().getAllNotDelivered();
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            return new RequestDAOObjectDB().getAllNotDelivered();
         }
+        return null;
     }
 
     public ArrayList<Request> getAllDelivered() {
-        try(var s = HibernateUtil.getSessionFactory().openSession()){
-            var q = s.createQuery("from Request as rq where rq.delivered = true ");
-            return (ArrayList<Request>) q.list();
+        if (getSelectedDB().equals(HIBERNATE)) {
+            return new RequestDAOHibernate().getAllDelivered();
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            return new RequestDAOObjectDB().getAllDelivered();
         }
+        return null;
     }
 
     public ArrayList<Request> getAllToday() {
-        try(var s = HibernateUtil.getSessionFactory().openSession()){
-            var q = s.createQuery("from Request as rq where rq.date = current_date");
-            return (ArrayList<Request>) q.list();
+        if (getSelectedDB().equals(HIBERNATE)) {
+            return new RequestDAOHibernate().getAllToday();
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            return new RequestDAOObjectDB().getAllToday();
         }
+        return null;
     }
 
     public ArrayList<Request> getAllLastWeek() {
-        try(var s = HibernateUtil.getSessionFactory().openSession()){
-            var q = s.createQuery("from Request as rq where rq.date >= current_date-7");
-            return (ArrayList<Request>) q.list();
+        if (getSelectedDB().equals(HIBERNATE)) {
+            return new RequestDAOHibernate().getAllLastWeek();
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            return new RequestDAOObjectDB().getAllLastWeek();
         }
+        return null;
     }
 
     public ArrayList<Request> getAllLastMonth() {
-        try(var s = HibernateUtil.getSessionFactory().openSession()){
-            var q = s.createQuery("from Request as rq where rq.date >= current_date-30");
-            return (ArrayList<Request>) q.list();
+        if (getSelectedDB().equals(HIBERNATE)) {
+            return new RequestDAOHibernate().getAllLastMonth();
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            return new RequestDAOObjectDB().getAllLastMonth();
         }
+        return null;
     }
 
     public ArrayList<Request> getAllLastYear() {
-        try(var s = HibernateUtil.getSessionFactory().openSession()){
-            var q = s.createQuery("from Request as rq where rq.date >= current_date-365");
-            return (ArrayList<Request>) q.list();
+        if (getSelectedDB().equals(HIBERNATE)) {
+            return new RequestDAOHibernate().getAllLastYear();
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            return new RequestDAOObjectDB().getAllLastYear();
         }
+        return null;
     }
 
     public ArrayList<String> getAllClients() {
-        try(var s = HibernateUtil.getSessionFactory().openSession()){
-            var q = s.createQuery("select distinct rq.client from Request as rq");
-            return (ArrayList<String>) q.list();
+        if (getSelectedDB().equals(HIBERNATE)) {
+            return new RequestDAOHibernate().getAllClients();
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            return new RequestDAOObjectDB().getAllClients();
         }
+        return null;
     }
 }

@@ -4,6 +4,7 @@ import com.example.orderhibfx.dao.ProductDAO;
 import com.example.orderhibfx.dao.RequestDAO;
 import com.example.orderhibfx.models.Product;
 import com.example.orderhibfx.models.Request;
+import com.example.orderhibfx.utils.DataBase;
 import com.example.orderhibfx.utils.DataHolder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
@@ -115,7 +116,7 @@ public class MainTableController implements Initializable {
         columnProductName.setCellValueFactory((var fila) -> {
             Request request = fila.getValue();
             var productName = new ReadOnlyObjectWrapper();
-            ProductDAO productDAO = new ProductDAO();
+            ProductDAO productDAO = new ProductDAO(DataBase.getSelectedDB());
             productName.setValue(productDAO.get(request.getProduct()).getName());
             return productName;
         });

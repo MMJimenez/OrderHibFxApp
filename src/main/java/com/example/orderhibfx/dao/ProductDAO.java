@@ -1,42 +1,54 @@
 package com.example.orderhibfx.dao;
 
+import com.example.orderhibfx.dao.hibernate.ProductDAOHibernate;
+import com.example.orderhibfx.dao.objectdb.ProductDAOObjectDB;
 import com.example.orderhibfx.models.Product;
-import com.example.orderhibfx.models.Request;
 import com.example.orderhibfx.utils.DAO;
-import com.example.orderhibfx.utils.HibernateUtil;
+import com.example.orderhibfx.utils.DataBase;
+import static com.example.orderhibfx.utils.DataBase.SelectedDB.HIBERNATE;
+import static com.example.orderhibfx.utils.DataBase.SelectedDB.OBJECTDB;
 
 import java.util.ArrayList;
 
-public class ProductDAO implements DAO {
+public class ProductDAO extends DataBase implements DAO<Product> {
+
+    public ProductDAO(SelectedDB selectedDB) {
+        setSelectedDB(selectedDB);
+    }
 
     @Override
     public Product get(Integer id) {
-        try (var s = HibernateUtil.getSessionFactory().openSession()) {
-            return s.get(Product.class, id);
+        if (getSelectedDB().equals(HIBERNATE)) {
+            return new ProductDAOHibernate().get(id);
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            return new ProductDAOObjectDB().get(id);
         }
+        return null;
     }
 
     @Override
     public ArrayList<Product> getAll() {
-        try(var s = HibernateUtil.getSessionFactory().openSession()){
-            var q = s.createQuery("from Product");
-            return (ArrayList<Product>) q.list();
+        if (getSelectedDB().equals(HIBERNATE)) {
+            return new ProductDAOHibernate().getAll();
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            return new ProductDAOObjectDB().getAll();
         }
+        return null;
     }
 
     //métodos que no se usan
     @Override
-    public void save(Object object) {
+    public void save(Product product) {
 
     }
 
     @Override
-    public void update(Object object) {
+    public void update(Product product) {
 
     }
 
     @Override
-    public void delete(Object object) {
+    public void delete(Product product) {
 
     }
 }
