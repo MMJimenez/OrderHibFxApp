@@ -65,7 +65,7 @@ public class MainTableController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        RequestDAO requestDAO = new RequestDAO();
+        RequestDAO requestDAO = new RequestDAO(DataBase.getSelectedDB());
         requestsTableData = requestDAO.getAllByDate();
 
         inflateChoiceBox();
@@ -75,7 +75,7 @@ public class MainTableController implements Initializable {
 
     @FXML
     void showOrderAction(ActionEvent event) {
-        RequestDAO requestDAO = new RequestDAO();
+        RequestDAO requestDAO = new RequestDAO(DataBase.getSelectedDB());
         choiceSelected = choiceBox.getValue();
 
         updateTable();
@@ -123,7 +123,7 @@ public class MainTableController implements Initializable {
     }
 
     private void updateTable() {
-        RequestDAO requestDAO = new RequestDAO();
+        RequestDAO requestDAO = new RequestDAO(DataBase.getSelectedDB());
 
         switch (choiceSelected) {
             case "Todos":
@@ -150,7 +150,7 @@ public class MainTableController implements Initializable {
 
     @FXML
     void filterAvaliableAction(ActionEvent event) {
-        RequestDAO requestDAO = new RequestDAO();
+        RequestDAO requestDAO = new RequestDAO(DataBase.getSelectedDB());
         requestsTableData = requestDAO.getAllNotDelivered();
         tableRequest.getItems().clear();
         tableRequest.getItems().addAll(requestsTableData);
@@ -162,7 +162,7 @@ public class MainTableController implements Initializable {
         }else {
             var request = getSelectedRow();
             request.setDelivered(true);
-            var requestDAO = new RequestDAO();
+            var requestDAO = new RequestDAO(DataBase.getSelectedDB());
             requestDAO.update(request);
             updateTable();
         }
@@ -178,7 +178,7 @@ public class MainTableController implements Initializable {
             var confirmation = important.showAndWait();
             if(confirmation.get() == ButtonType.OK){
                 var request = getSelectedRow();
-                var requestDAO = new RequestDAO();
+                var requestDAO = new RequestDAO(DataBase.getSelectedDB());
                 requestDAO.delete(request);
                 updateTable();
             }
