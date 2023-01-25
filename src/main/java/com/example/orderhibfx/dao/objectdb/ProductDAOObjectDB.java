@@ -9,6 +9,13 @@ public class ProductDAOObjectDB implements DAO<Product> {
 
     @Override
     public Product get(Integer id) {
+        //Todo solo hacer estos
+        return null;
+    }
+
+    @Override
+    public ArrayList<Product> getAll() {
+        //Todo solo hacer estos
         return null;
     }
 
@@ -25,10 +32,5 @@ public class ProductDAOObjectDB implements DAO<Product> {
     @Override
     public void delete(Product object) {
 
-    }
-
-    @Override
-    public ArrayList<Product> getAll() {
-        return null;
     }
 }
