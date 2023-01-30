@@ -2,12 +2,9 @@ package com.example.orderhibfx;
 
 import com.example.orderhibfx.dao.ProductDAO;
 import com.example.orderhibfx.dao.RequestDAO;
-import com.example.orderhibfx.models.Product;
 import com.example.orderhibfx.models.Request;
-import com.example.orderhibfx.utils.DataBase;
 import com.example.orderhibfx.utils.DataHolder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -65,7 +61,7 @@ public class MainTableController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        RequestDAO requestDAO = new RequestDAO(DataBase.getSelectedDB());
+        RequestDAO requestDAO = new RequestDAO();
         requestsTableData = requestDAO.getAllByDate();
 
         inflateChoiceBox();
@@ -75,7 +71,7 @@ public class MainTableController implements Initializable {
 
     @FXML
     void showOrderAction(ActionEvent event) {
-        RequestDAO requestDAO = new RequestDAO(DataBase.getSelectedDB());
+        RequestDAO requestDAO = new RequestDAO();
         choiceSelected = choiceBox.getValue();
 
         updateTable();
@@ -116,14 +112,14 @@ public class MainTableController implements Initializable {
         columnProductName.setCellValueFactory((var fila) -> {
             Request request = fila.getValue();
             var productName = new ReadOnlyObjectWrapper();
-            ProductDAO productDAO = new ProductDAO(DataBase.getSelectedDB());
+            ProductDAO productDAO = new ProductDAO();
             productName.setValue(productDAO.get(request.getProduct()).getName());
             return productName;
         });
     }
 
     private void updateTable() {
-        RequestDAO requestDAO = new RequestDAO(DataBase.getSelectedDB());
+        RequestDAO requestDAO = new RequestDAO();
 
         switch (choiceSelected) {
             case "Todos":
@@ -150,7 +146,7 @@ public class MainTableController implements Initializable {
 
     @FXML
     void filterAvaliableAction(ActionEvent event) {
-        RequestDAO requestDAO = new RequestDAO(DataBase.getSelectedDB());
+        RequestDAO requestDAO = new RequestDAO();
         requestsTableData = requestDAO.getAllNotDelivered();
         tableRequest.getItems().clear();
         tableRequest.getItems().addAll(requestsTableData);
@@ -162,7 +158,7 @@ public class MainTableController implements Initializable {
         }else {
             var request = getSelectedRow();
             request.setDelivered(true);
-            var requestDAO = new RequestDAO(DataBase.getSelectedDB());
+            var requestDAO = new RequestDAO();
             requestDAO.update(request);
             updateTable();
         }
@@ -178,7 +174,7 @@ public class MainTableController implements Initializable {
             var confirmation = important.showAndWait();
             if(confirmation.get() == ButtonType.OK){
                 var request = getSelectedRow();
-                var requestDAO = new RequestDAO(DataBase.getSelectedDB());
+                var requestDAO = new RequestDAO();
                 requestDAO.delete(request);
                 updateTable();
             }

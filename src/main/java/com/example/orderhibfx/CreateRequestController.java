@@ -4,7 +4,6 @@ import com.example.orderhibfx.dao.ProductDAO;
 import com.example.orderhibfx.dao.RequestDAO;
 import com.example.orderhibfx.models.Product;
 import com.example.orderhibfx.models.Request;
-import com.example.orderhibfx.utils.DataBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +15,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -61,7 +59,7 @@ public class CreateRequestController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        RequestDAO requestDAO = new RequestDAO(DataBase.getSelectedDB());
+        RequestDAO requestDAO = new RequestDAO();
         clientsNames = new HashSet<>(requestDAO.getAllClients());
 
         inflateChoiceBox();
@@ -84,7 +82,7 @@ public class CreateRequestController implements Initializable {
 
 
     private void updateTable() {
-        ProductDAO productDAO = new ProductDAO(DataBase.getSelectedDB());
+        ProductDAO productDAO = new ProductDAO();
 
         tableView.getItems().clear();
         tableView.getItems().addAll(productDAO.getAll());
@@ -147,7 +145,7 @@ public class CreateRequestController implements Initializable {
             request.setDelivered(false);
             request.setId(1);
 
-            RequestDAO requestDAO = new RequestDAO(DataBase.getSelectedDB());
+            RequestDAO requestDAO = new RequestDAO();
             requestDAO.save(request);
             changeToMainTable(event);
         }

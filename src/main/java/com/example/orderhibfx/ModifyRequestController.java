@@ -4,7 +4,6 @@ import com.example.orderhibfx.dao.ProductDAO;
 import com.example.orderhibfx.dao.RequestDAO;
 import com.example.orderhibfx.models.Product;
 import com.example.orderhibfx.models.Request;
-import com.example.orderhibfx.utils.DataBase;
 import com.example.orderhibfx.utils.DataHolder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +22,6 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
-import static com.example.orderhibfx.utils.DataBase.SelectedDB.HIBERNATE;
 
 public class ModifyRequestController implements Initializable {
 
@@ -67,7 +65,7 @@ public class ModifyRequestController implements Initializable {
         DataHolder dataHolder = DataHolder.getInstance();
         Request request = (Request) dataHolder.getData();
 
-        RequestDAO requestDAO = new RequestDAO(DataBase.getSelectedDB());
+        RequestDAO requestDAO = new RequestDAO();
         clientsNames = new HashSet<>(requestDAO.getAllClients());
 
         inflateChoiceBox();
@@ -92,7 +90,7 @@ public class ModifyRequestController implements Initializable {
     }
 
     private void updateTable() {
-        ProductDAO productDAO = new ProductDAO(HIBERNATE);
+        ProductDAO productDAO = new ProductDAO();
 
         tableView.getItems().clear();
         tableView.getItems().addAll(productDAO.getAll());
@@ -148,7 +146,7 @@ public class ModifyRequestController implements Initializable {
                 request.setDelivered(false);
                 request.setId(requestToModify.getId());
 
-                RequestDAO requestDAO = new RequestDAO(DataBase.getSelectedDB());
+                RequestDAO requestDAO = new RequestDAO();
                 requestDAO.update(request);
                 changeToMainTable(event);
             }

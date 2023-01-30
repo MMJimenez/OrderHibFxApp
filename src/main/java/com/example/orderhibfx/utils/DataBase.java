@@ -11,7 +11,7 @@ public abstract class DataBase {
         return selectedDB;
     }
 
-    protected static void setSelectedDB(SelectedDB selectedDB) {
+    public static void setSelectedDB(SelectedDB selectedDB) {
         DataBase.selectedDB = selectedDB;
     }
 }

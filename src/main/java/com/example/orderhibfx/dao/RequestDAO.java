@@ -17,10 +17,6 @@ import static com.example.orderhibfx.utils.DataBase.SelectedDB.OBJECTDB;
 
 public class RequestDAO extends DataBase implements DAO<Request> {
 
-    public RequestDAO(SelectedDB selectedDB) {
-        setSelectedDB(selectedDB);
-    }
-
     @Override
     public void save(Request request) {
         if (getSelectedDB().equals(HIBERNATE)) {

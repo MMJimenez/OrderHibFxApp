@@ -12,10 +12,6 @@ import java.util.ArrayList;
 
 public class ProductDAO extends DataBase implements DAO<Product> {
 
-    public ProductDAO(SelectedDB selectedDB) {
-        setSelectedDB(selectedDB);
-    }
-
     @Override
     public Product get(Integer id) {
         if (getSelectedDB().equals(HIBERNATE)) {
