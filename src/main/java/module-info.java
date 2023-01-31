@@ -8,6 +8,7 @@ module com.example.orderhibfx {
     requires java.naming;
     requires java.sql;
     requires java.base;
+    requires objectdb;
 
     requires mysql.connector.java;
 

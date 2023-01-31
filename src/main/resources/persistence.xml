@@ -7,7 +7,7 @@
     <persistence-unit name="GuestbookPU" transaction-type="JTA">
         <provider>com.objectdb.jpa.Provider</provider>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="$objectdb/db/order.odb"/>
+            <property name="javax.persistence.jdbc.url" value="db/order.odb"/>
             <property name="javax.persistence.jdbc.user" value=""/>
             <property name="javax.persistence.jdbc.password" value=""/>
         </properties>

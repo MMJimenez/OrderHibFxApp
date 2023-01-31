@@ -5,13 +5,23 @@ import com.example.orderhibfx.utils.DAO;
 import com.example.orderhibfx.utils.HibernateUtil;
 import org.hibernate.Transaction;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
+
+import static com.example.orderhibfx.utils.ObjectDBUtil.getEntityManager;
 
 public class RequestDAOObjectDB implements DAO<Request> {
 
     @Override
     public void save(Request request) {
-
+        try {
+            EntityManager em = getEntityManager();
+            em.getTransaction().begin();
+            em.persist(request);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
     @Override

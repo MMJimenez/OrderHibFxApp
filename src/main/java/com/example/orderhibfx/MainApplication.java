@@ -1,5 +1,6 @@
 package com.example.orderhibfx;
 
+import com.example.orderhibfx.dao.ProductDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
