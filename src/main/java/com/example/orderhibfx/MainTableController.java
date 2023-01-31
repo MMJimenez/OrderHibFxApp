@@ -54,6 +54,9 @@ public class MainTableController implements Initializable {
     @FXML
     private ChoiceBox<String> choiceBox;
 
+    @FXML
+    private ChoiceBox<String> framework;
+
     private ArrayList<Request> requestsTableData;
 
     private String choiceSelected;
@@ -85,6 +88,11 @@ public class MainTableController implements Initializable {
         choiceBox.getItems().add("Última año");
         choiceBox.setValue("Todos");
         choiceSelected = "Todos";
+
+        framework.getItems().add("Hibernate");
+        framework.getItems().add("ObjectDB");
+        framework.setValue("Hibernate");
+
     }
 
 
