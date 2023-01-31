@@ -5,7 +5,7 @@ public abstract class DataBase {
         OBJECTDB, HIBERNATE
     }
 
-    private static SelectedDB selectedDB = SelectedDB.OBJECTDB;
+    private static SelectedDB selectedDB = SelectedDB.HIBERNATE;
 
     public static SelectedDB getSelectedDB() {
         return selectedDB;
