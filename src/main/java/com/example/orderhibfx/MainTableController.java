@@ -3,6 +3,7 @@ package com.example.orderhibfx;
 import com.example.orderhibfx.dao.ProductDAO;
 import com.example.orderhibfx.dao.RequestDAO;
 import com.example.orderhibfx.models.Request;
+import com.example.orderhibfx.utils.DataBase;
 import com.example.orderhibfx.utils.DataHolder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
@@ -55,7 +56,7 @@ public class MainTableController implements Initializable {
     private ChoiceBox<String> choiceBox;
 
     @FXML
-    private ChoiceBox<String> framework;
+    private ComboBox<String> dataBaseComboBox;
 
     private ArrayList<Request> requestsTableData;
 
@@ -89,9 +90,9 @@ public class MainTableController implements Initializable {
         choiceBox.setValue("Todos");
         choiceSelected = "Todos";
 
-        framework.getItems().add("Hibernate");
-        framework.getItems().add("ObjectDB");
-        framework.setValue("Hibernate");
+        dataBaseComboBox.getItems().add("Hibernate");
+        dataBaseComboBox.getItems().add("ObjectDB");
+        dataBaseComboBox.setValue("Hibernate");
 
     }
 
@@ -219,6 +220,16 @@ public class MainTableController implements Initializable {
         } else {
             errorMessage();
         }
+    }
+
+    public void changeCombo(ActionEvent event) throws IOException {
+        String frameworkSelected = dataBaseComboBox.getValue();
+        if (frameworkSelected.equals("Hibernate")) {
+            DataBase.setSelectedDB(DataBase.SelectedDB.HIBERNATE);
+        } else {
+            DataBase.setSelectedDB(DataBase.SelectedDB.OBJECTDB);
+        }
+        updateTable();
     }
 
     //Colapsa esta clase
