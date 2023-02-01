@@ -8,8 +8,9 @@ import java.util.Objects;
 
 @Entity
 public class Request {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Integer id;
     @Basic

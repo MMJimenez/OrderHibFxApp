@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.orderhibfx.utils.ObjectDBUtil.getEntityManager;
+import static com.example.orderhibfx.utils.ObjectDBUtil.getEMF;
 
 public class ProductDAOObjectDB implements DAO<Product> {
 
@@ -17,7 +17,8 @@ public class ProductDAOObjectDB implements DAO<Product> {
     public Product get(Integer id) {
         Product productResult = new Product();
         try {
-            EntityManager em = getEntityManager();
+            //EntityManager em = getEntityManager();
+            EntityManager em = getEMF().createEntityManager();
             productResult = em.find(Product.class, id);
             em.close();
         } catch (Exception ex) {
@@ -29,7 +30,8 @@ public class ProductDAOObjectDB implements DAO<Product> {
     @Override
     public ArrayList<Product> getAll() {
         try {
-            EntityManager em = getEntityManager();
+            //EntityManager em = getEntityManager();
+            EntityManager em = getEMF().createEntityManager();
             em.getTransaction().begin();
             TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p", Product.class);
             List<Product> results = query.getResultList();
@@ -44,7 +46,8 @@ public class ProductDAOObjectDB implements DAO<Product> {
     @Override
     public void save(Product product) {
         try {
-            EntityManager em = getEntityManager();
+            //EntityManager em = getEntityManager();
+            EntityManager em = getEMF().createEntityManager();
             em.getTransaction().begin();
             em.persist(product);
             em.getTransaction().commit();

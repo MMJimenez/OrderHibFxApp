@@ -9,30 +9,19 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class ObjectDBUtil {
-    protected final static EntityManagerFactory emf;
-    private final static EntityManager em;
+    private final static EntityManagerFactory emf;
 
     static {
         try {
             emf = Persistence.createEntityManagerFactory("db/order.odb");
-            em = emf.createEntityManager();
+//            em = emf.createEntityManager();
         } catch (HibernateException ex) {
             throw  new ExceptionInInitializerError(ex);
         }
     }
 
-    public static EntityManager getEntityManager() {
-        return em;
-    }
-
-    public static void closeEmf() {
-        try {
-            em.close();
-        } catch (Exception ex) {
-
-        } finally {
-            emf.close();
-        }
+    public static EntityManagerFactory getEMF() {
+        return emf;
     }
 
 }
