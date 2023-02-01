@@ -1,6 +1,7 @@
 package com.example.orderhibfx.dao.objectdb;
 
 import com.example.orderhibfx.models.Product;
+import com.example.orderhibfx.models.Request;
 import com.example.orderhibfx.utils.DAO;
 
 import javax.persistence.EntityManager;
@@ -17,10 +18,8 @@ public class ProductDAOObjectDB implements DAO<Product> {
         Product productResult = new Product();
         try {
             EntityManager em = getEntityManager();
-            em.getTransaction().begin();
-            TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p where p.id = :id", Product.class);
-            query.setParameter("id", id);
-            productResult = query.getSingleResult();
+            productResult = em.find(Product.class, id);
+            em.close();
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -34,6 +33,7 @@ public class ProductDAOObjectDB implements DAO<Product> {
             em.getTransaction().begin();
             TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p", Product.class);
             List<Product> results = query.getResultList();
+            em.close();
             return new ArrayList<>(results);
         } catch (Exception ex) {
             System.out.println(ex);
@@ -48,6 +48,7 @@ public class ProductDAOObjectDB implements DAO<Product> {
             em.getTransaction().begin();
             em.persist(product);
             em.getTransaction().commit();
+            em.close();
         } catch (Exception ex) {
             System.out.println(ex.toString());
         }

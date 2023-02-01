@@ -68,7 +68,8 @@ public class RequestDAO extends DataBase implements DAO<Request> {
         if (getSelectedDB().equals(HIBERNATE)) {
             return new RequestDAOHibernate().getAllByClient();
         } if (getSelectedDB().equals(OBJECTDB)) {
-            return new RequestDAOObjectDB().getAllByClient();
+            //TODO: No tiene uso
+//            return new RequestDAOObjectDB().getAllByClient();
         }
         return null;
     }
@@ -95,7 +96,8 @@ public class RequestDAO extends DataBase implements DAO<Request> {
         if (getSelectedDB().equals(HIBERNATE)) {
             return new RequestDAOHibernate().getAllDelivered();
         } if (getSelectedDB().equals(OBJECTDB)) {
-            return new RequestDAOObjectDB().getAllDelivered();
+            //TODO: No tiene uso
+            //return new RequestDAOObjectDB().getAllDelivered();
         }
         return null;
     }
@@ -122,7 +124,8 @@ public class RequestDAO extends DataBase implements DAO<Request> {
         if (getSelectedDB().equals(HIBERNATE)) {
             return new RequestDAOHibernate().getAllLastMonth();
         } if (getSelectedDB().equals(OBJECTDB)) {
-            return new RequestDAOObjectDB().getAllLastMonth();
+            //TODO: No tiene uso
+//            return new RequestDAOObjectDB().getAllLastMonth();
         }
         return null;
     }

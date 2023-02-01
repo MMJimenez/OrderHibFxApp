@@ -129,6 +129,7 @@ public class MainTableController implements Initializable {
     private void updateTable() {
         RequestDAO requestDAO = new RequestDAO();
 
+        //Si se comenta este switch no da error
         switch (choiceSelected) {
             case "Todos":
                 requestsTableData = requestDAO.getAllByDate();
@@ -141,6 +142,7 @@ public class MainTableController implements Initializable {
                 break;
             case "Última año":
                 requestsTableData = requestDAO.getAllLastYear();
+
                 break;
         }
 
