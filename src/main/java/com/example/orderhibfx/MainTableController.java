@@ -92,7 +92,11 @@ public class MainTableController implements Initializable {
 
         dataBaseComboBox.getItems().add("Hibernate");
         dataBaseComboBox.getItems().add("ObjectDB");
-        dataBaseComboBox.setValue("Hibernate");
+
+        if(DataBase.getSelectedDB().equals(DataBase.SelectedDB.OBJECTDB))
+            dataBaseComboBox.setValue("ObjectDB");
+        else if(DataBase.getSelectedDB().equals(DataBase.SelectedDB.HIBERNATE))
+            dataBaseComboBox.setValue("Hibernate");
 
     }
 
