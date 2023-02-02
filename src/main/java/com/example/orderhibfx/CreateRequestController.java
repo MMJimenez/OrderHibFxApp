@@ -143,7 +143,6 @@ public class CreateRequestController implements Initializable {
             request.setClient(choiceBox.getSelectionModel().getSelectedItem());
             request.setDate(Date.valueOf(datePicker.getValue()));
             request.setDelivered(false);
-            request.setId(1);
 
             RequestDAO requestDAO = new RequestDAO();
             requestDAO.save(request);
