@@ -17,7 +17,6 @@ public class ProductDAOObjectDB implements DAO<Product> {
     public Product get(Integer id) {
         Product productResult = new Product();
         try {
-            //EntityManager em = getEntityManager();
             EntityManager em = getEMF().createEntityManager();
             productResult = em.find(Product.class, id);
             em.close();
@@ -30,7 +29,6 @@ public class ProductDAOObjectDB implements DAO<Product> {
     @Override
     public ArrayList<Product> getAll() {
         try {
-            //EntityManager em = getEntityManager();
             EntityManager em = getEMF().createEntityManager();
             em.getTransaction().begin();
             TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p", Product.class);
@@ -46,14 +44,13 @@ public class ProductDAOObjectDB implements DAO<Product> {
     @Override
     public void save(Product product) {
         try {
-            //EntityManager em = getEntityManager();
             EntityManager em = getEMF().createEntityManager();
             em.getTransaction().begin();
             em.persist(product);
             em.getTransaction().commit();
             em.close();
         } catch (Exception ex) {
-            System.out.println(ex.toString());
+            System.out.println(ex);
         }
     }
 

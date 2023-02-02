@@ -2,8 +2,11 @@ package com.example.orderhibfx.dao.objectdb;
 
 import com.example.orderhibfx.models.Request;
 import com.example.orderhibfx.utils.DAO;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,11 +19,11 @@ public class RequestDAOObjectDB implements DAO<Request> {
     @Override
     public void save(Request request) {
         try {
-            request.setId(getLastId());
             EntityManager em = getEMF().createEntityManager();
             em.getTransaction().begin();
             em.persist(request);
             em.getTransaction().commit();
+            em.close();
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -186,18 +189,6 @@ public class RequestDAOObjectDB implements DAO<Request> {
         return java.sql.Date.valueOf(date);
     }
 
-    private Integer getLastId() {
-        Integer lastId = 0;
-        try {
-            EntityManager em = getEMF().createEntityManager();
-            em.getTransaction().begin();
-            TypedQuery<Integer> query = em.createQuery("SELECT COUNT(r) FROM Request r", Integer.class);
-            Integer numResults = query.getSingleResult();
-            lastId = numResults + 1;
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        return lastId;
-    }
+
 }
 
