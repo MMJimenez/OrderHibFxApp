@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainTableController implements Initializable {
@@ -61,6 +62,7 @@ public class MainTableController implements Initializable {
     private ArrayList<Request> requestsTableData;
 
     private String choiceSelected;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -238,5 +240,18 @@ public class MainTableController implements Initializable {
         updateTable();
     }
 
+    public void createReport(ActionEvent event) throws IOException {
+
+       try{
+        Parent root = FXMLLoader.load(getClass().getResource("jaspersoft-view.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        }catch (Exception e){
+           e.printStackTrace();
+
+        }
+    }
     //Colapsa esta clase
 }
