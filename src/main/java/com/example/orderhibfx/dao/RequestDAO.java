@@ -10,7 +10,10 @@ import com.example.orderhibfx.utils.DataBase;
 import com.example.orderhibfx.utils.HibernateUtil;
 import org.hibernate.Transaction;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.orderhibfx.utils.DataBase.SelectedDB.HIBERNATE;
 import static com.example.orderhibfx.utils.DataBase.SelectedDB.OBJECTDB;
@@ -144,6 +147,15 @@ public class RequestDAO extends DataBase implements DAO<Request> {
             return new RequestDAOHibernate().getAllClients();
         } if (getSelectedDB().equals(OBJECTDB)) {
             return new RequestDAOObjectDB().getAllClients();
+        }
+        return null;
+    }
+
+    public ArrayList<Request> getAllBetweenDates(LocalDate start, LocalDate end) {
+        if (getSelectedDB().equals(HIBERNATE)) {
+            return new RequestDAOHibernate().getAllBetweenDates(start, end);
+        } if (getSelectedDB().equals(OBJECTDB)) {
+            return new RequestDAOObjectDB().getAllBetweenDates(start, end);
         }
         return null;
     }

@@ -35,7 +35,7 @@
             <Insets bottom="40.0" />
          </BorderPane.margin>
          <children>
-            <Button mnemonicParsing="false" onAction="#filterAvaliableAction" text="FILTRAR NO ENTREGADOS" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#filterAvaliableAction" prefHeight="25.0" prefWidth="188.0" text="FILTRAR NO ENTREGADOS" GridPane.rowIndex="1" />
             <Button fx:id="btnShowOrder" mnemonicParsing="false" onAction="#showOrderAction" text="VER" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
             <Label text="PEDIDOS" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
@@ -56,6 +56,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </ComboBox>
+            <Button fx:id="jaspersoftButton" mnemonicParsing="false" onAction="#createReport" prefHeight="25.0" prefWidth="192.0" text="CREAR INFORME JASPERSOFT" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </top>

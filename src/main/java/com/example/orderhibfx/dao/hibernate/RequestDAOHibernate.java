@@ -5,6 +5,7 @@ import com.example.orderhibfx.utils.DAO;
 import com.example.orderhibfx.utils.HibernateUtil;
 import org.hibernate.Transaction;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RequestDAOHibernate implements DAO<Request> {
@@ -111,6 +112,15 @@ public class RequestDAOHibernate implements DAO<Request> {
         try(var s = HibernateUtil.getSessionFactory().openSession()){
             var q = s.createQuery("select distinct rq.client from Request as rq");
             return (ArrayList<String>) q.list();
+        }
+    }
+
+    public ArrayList<Request> getAllBetweenDates(LocalDate start, LocalDate end) {
+        try(var s = HibernateUtil.getSessionFactory().openSession()){
+            var q = s.createQuery("from Request as rq where rq.date between :start and :end");
+            q.setParameter("start", start);
+            q.setParameter("end", end);
+            return (ArrayList<Request>) q.list();
         }
     }
 }
