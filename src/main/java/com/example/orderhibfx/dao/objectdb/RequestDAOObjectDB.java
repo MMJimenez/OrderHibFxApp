@@ -190,5 +190,21 @@ public class RequestDAOObjectDB implements DAO<Request> {
     }
 
 
+    //TODO: Esto me lo ha hecho el copilot, pero no se si funciona
+    public ArrayList<Request> getAllBetweenDates(LocalDate start, LocalDate end) {
+        try {
+            EntityManager em = getEMF().createEntityManager();
+            em.getTransaction().begin();
+            TypedQuery<Request> query = em.createQuery(
+                    "SELECT r FROM Request r WHERE r.date BETWEEN :start AND :end", Request.class);
+            query.setParameter("start", java.sql.Date.valueOf(start));
+            query.setParameter("end", java.sql.Date.valueOf(end));
+            List<Request> results = query.getResultList();
+            return new ArrayList<>(results);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
 }
 
