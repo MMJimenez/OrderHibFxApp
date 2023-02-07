@@ -39,3 +39,4 @@ build/
 /src/main/java/com/example/orderhibfx/Pruebas.java
 /src/main/java/com/example/orderhibfx/Fecha.java
 /db/
+/src/main/resources/hibernate.cfg.xml

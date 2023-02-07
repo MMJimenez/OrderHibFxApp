@@ -11,7 +11,7 @@ module com.example.orderhibfx {
     requires objectdb;
 
     requires mysql.connector.java;
-
+    requires jasperreports;
 
     opens com.example.orderhibfx to javafx.fxml;
     exports com.example.orderhibfx;

@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class ObjectDBUtil {
+public abstract class ObjectDBUtil {
     private final static EntityManagerFactory emf;
 
     static {

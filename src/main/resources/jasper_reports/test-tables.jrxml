@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="test-tables" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="842da083-c8c2-4a26-823c-f68851529b1a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataTestAdapter"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="TestDatasetTipo1" uuid="fd7abbec-0b78-4e1b-86a6-1937cc1058f1">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataTestAdapter"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT * FROM request WHERE delivered = true]]>
+		</queryString>
+		<field name="id" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="id"/>
+			<property name="com.jaspersoft.studio.field.label" value="id"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="request"/>
+		</field>
+		<field name="date" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.name" value="date"/>
+			<property name="com.jaspersoft.studio.field.label" value="date"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="request"/>
+		</field>
+		<field name="client" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="client"/>
+			<property name="com.jaspersoft.studio.field.label" value="client"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="request"/>
+		</field>
+		<field name="delivered" class="java.lang.Boolean">
+			<property name="com.jaspersoft.studio.field.name" value="delivered"/>
+			<property name="com.jaspersoft.studio.field.label" value="delivered"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="request"/>
+		</field>
+		<field name="product" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="product"/>
+			<property name="com.jaspersoft.studio.field.label" value="product"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="request"/>
+		</field>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM request]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="268" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="10" width="550" height="200" uuid="9767c480-408b-491f-81eb-b097390d4039">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="TestDatasetTipo1" uuid="9acc9195-4911-447f-92c2-6eca13df12a2">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="40" uuid="4917852b-722d-4d38-80aa-7749f5c2afc0">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="30" uuid="855d9995-af7c-4025-9016-d14484b07eb8"/>
+								<text><![CDATA[id]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="40" height="30" uuid="4f1b5e45-e5af-41a6-92fe-a2444d589193"/>
+								<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="57b35acb-ff40-406a-9564-c97b2ad0c19a">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="30" uuid="f788a622-178b-4b36-9a01-0ff775be0068"/>
+								<text><![CDATA[date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="40" height="30" uuid="12b356bc-3bb7-4996-8084-14c921749ef8"/>
+								<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="fa9c5c78-b78c-4cf6-87dd-8e0cfe6b301c">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="30" uuid="43db6866-3134-4456-9714-59726b1557b5"/>
+								<text><![CDATA[client]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="40" height="30" uuid="f7fd2c7b-e51e-46be-858c-2164468bd8de"/>
+								<textFieldExpression><![CDATA[$F{client}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="040cb62c-f059-4fa2-9f9f-2bf741958662">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="30" uuid="3a55d01d-4848-474a-944b-37dae6d2f053"/>
+								<text><![CDATA[delivered]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="40" height="30" uuid="7a95d74c-1f9c-4bb3-a843-f2527c77e155"/>
+								<textFieldExpression><![CDATA[$F{delivered}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="9ee547d8-b5e5-4ba2-be94-c9c703f3cb73">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="30" uuid="cc2b4e6e-6190-49e3-95e0-9aafc21db90d"/>
+								<text><![CDATA[product]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="40" height="30" uuid="c94db937-1ad7-4ec5-980f-c0680500816d"/>
+								<textFieldExpression><![CDATA[$F{product}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
