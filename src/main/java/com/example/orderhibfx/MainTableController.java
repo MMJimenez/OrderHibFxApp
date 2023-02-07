@@ -2,7 +2,9 @@ package com.example.orderhibfx;
 
 import com.example.orderhibfx.dao.ProductDAO;
 import com.example.orderhibfx.dao.RequestDAO;
+import com.example.orderhibfx.dao.hibernate.RequestDAOHibernate;
 import com.example.orderhibfx.models.Request;
+import com.example.orderhibfx.utils.DAO;
 import com.example.orderhibfx.utils.DataBase;
 import com.example.orderhibfx.utils.DataHolder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -67,7 +69,11 @@ public class MainTableController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        RequestDAO requestDAO = new RequestDAO();
+
+        var requestDAO = new RequestDAO();
+
+
+
         requestsTableData = requestDAO.getAllByDate();
 
         inflateChoiceBox();
@@ -250,7 +256,6 @@ public class MainTableController implements Initializable {
         stage.show();
         }catch (Exception e){
            e.printStackTrace();
-
         }
     }
     //Colapsa esta clase

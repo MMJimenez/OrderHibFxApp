@@ -3,6 +3,7 @@ package com.example.orderhibfx;
 import com.example.orderhibfx.controller.Report;
 import com.example.orderhibfx.dao.ProductDAO;
 import com.example.orderhibfx.dao.RequestDAO;
+import com.example.orderhibfx.dao.jaspersoft.ProductDataSource;
 import com.example.orderhibfx.models.Product;
 import com.example.orderhibfx.models.Request;
 import com.example.orderhibfx.utils.HibernateUtil;
@@ -14,6 +15,7 @@ import javafx.fxml.Initializable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,10 +33,13 @@ import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.query.SQLQueryClauseFunctionsExtensions;
 import net.sf.jasperreports.view.JasperViewer;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
+
+
+import static com.example.orderhibfx.InformationReport.showReportMenu;
+
+//import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.parameters;
+
 
 public class JaspersoftController implements Initializable {
     @FXML
@@ -54,30 +59,32 @@ public class JaspersoftController implements Initializable {
     @FXML
     private Button generate3Button;
 
+        @FXML
+        private Button generate4Button;
+
+        @FXML
+        private Button generate5Button;
+
+        @FXML
+        private Button generate6Button;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
-
-    public void generateProduct(ActionEvent actionEvent) {
-        try {
-            compileProductsReport();
-        } catch (JRException e) {
-            throw new RuntimeException(e);
-        }
-
-//        List<Product> products = new ArrayList<>();
-//        ProductDAO product
-//        AO = new ProductDAO();
-//        products = productDAO.getAll();
+    public void generateProduct(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
+        showReportMenu();
     }
 
-    public void generateToday(ActionEvent actionEvent) {
+    public void generateToday(ActionEvent actionEvent) throws JRException {
         List<Request> requests = new ArrayList<>();
         RequestDAO requestDAO = new RequestDAO();
         requests = requestDAO.getAllToday();
+
+
+
     }
 
     public void generateDate(ActionEvent actionEvent) {
@@ -98,6 +105,7 @@ public class JaspersoftController implements Initializable {
             requests = requestDAO.getAllBetweenDates(date1, date2);
 
         } else {
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ERROR");
             alert.setHeaderText("");
@@ -111,6 +119,18 @@ public class JaspersoftController implements Initializable {
         }
     }
 
+    public void generateProductPDF(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
+
+    }
+
+    public void generateTodayPDF(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
+
+    }
+
+    public void generateDatePDF(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
+
+    }
+
     public void back(ActionEvent actionEvent) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("main-table-view.fxml"));
@@ -121,36 +141,5 @@ public class JaspersoftController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-    }
-    private void compileProductsReport() throws JRException {
-//        String reportPath = "src/main/resources/jasper_reports/product-tables.jrxml";
-//        JasperReport report = JasperCompileManager.compileReport(reportPath);
-
-        String reportCompilePath = "src/main/resources/jasper_reports/product-tables.jasper";
-
-        ProductDAO productDAO = new ProductDAO();
-        List<Product> products = productDAO.getAll();
-
-//        RequestDAO requestDAO = new RequestDAO();
-//        List<Request> requests = requestDAO.getAll();
-//        List<Request> requests = new ArrayList<>();
-//        for (Request request : requestsDAO) {
-//            Request tempRequest = new Request();
-//            tempRequest.setId(request.getId());
-//            tempRequest.setClient(request.getClient());
-//            tempRequest.setDate(request.getDate());
-//            tempRequest.setDelivered(request.getDelivered());
-//            tempRequest.setProduct(request.getProduct());
-//            requests.add(tempRequest);
-//        }
-
-        JRDataSource dataSource = new JRBeanCollectionDataSource(products);
-        HashMap<String, Object> parameters = new HashMap<>();
-        // cambiar report por reportCompilePath en caso de usar el reporte compilado
-        JasperPrint jasperPrint = JasperFillManager.fillReport(reportCompilePath, parameters, dataSource);
-
-        JasperViewer jasperViewer = new JasperViewer(jasperPrint);
-        jasperViewer.setVisible(true);
     }
 }
