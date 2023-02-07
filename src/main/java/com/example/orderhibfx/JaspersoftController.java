@@ -2,6 +2,7 @@ package com.example.orderhibfx;
 
 import com.example.orderhibfx.dao.ProductDAO;
 import com.example.orderhibfx.dao.RequestDAO;
+import com.example.orderhibfx.dao.jaspersoft.ProductDataSource;
 import com.example.orderhibfx.models.Product;
 import com.example.orderhibfx.models.Request;
 import javafx.event.ActionEvent;
@@ -11,10 +12,10 @@ import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -24,6 +25,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
+import static com.example.orderhibfx.InformationReport.showReportMenu;
+
+//import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.parameters;
 
 public class JaspersoftController implements Initializable {
         @FXML
@@ -44,6 +53,15 @@ public class JaspersoftController implements Initializable {
         @FXML
         private Button generate3Button;
 
+        @FXML
+        private Button generate4Button;
+
+        @FXML
+        private Button generate5Button;
+
+        @FXML
+        private Button generate6Button;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -51,16 +69,20 @@ public class JaspersoftController implements Initializable {
     }
 
 
-    public void generateProduct(ActionEvent actionEvent) {
-        List<Product> products = new ArrayList<>();
-        ProductDAO productDAO = new ProductDAO();
-        products = productDAO.getAll();
+    public void generateProduct(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
+
+        showReportMenu();
+
+
     }
 
-    public void generateToday(ActionEvent actionEvent) {
+    public void generateToday(ActionEvent actionEvent) throws JRException {
         List<Request> requests = new ArrayList<>();
         RequestDAO requestDAO = new RequestDAO();
         requests = requestDAO.getAllToday();
+
+
+
     }
 
     public void generateDate(ActionEvent actionEvent) {
@@ -80,6 +102,7 @@ public class JaspersoftController implements Initializable {
             RequestDAO requestDAO = new RequestDAO();
             requests = requestDAO.getAllBetweenDates(date1, date2);
 
+
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ERROR");
@@ -94,6 +117,18 @@ public class JaspersoftController implements Initializable {
         }
     }
 
+    public void generateProductPDF(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
+
+    }
+
+    public void generateTodayPDF(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
+
+    }
+
+    public void generateDatePDF(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
+
+    }
+
     public void back(ActionEvent actionEvent) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("main-table-view.fxml"));
@@ -104,7 +139,6 @@ public class JaspersoftController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 
