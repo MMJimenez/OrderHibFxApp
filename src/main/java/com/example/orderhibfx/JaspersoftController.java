@@ -113,10 +113,12 @@ public class JaspersoftController implements Initializable {
 
     public void generateProductPDF(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
         pdfReportProduct();
+        showDialog();
     }
 
     public void generateTodayPDF(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
         pdfReportRequestToday();
+        showDialog();
     }
 
     public void generateDatePDF(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
@@ -133,7 +135,7 @@ public class JaspersoftController implements Initializable {
             }
 
             pdfReportRequestbyDate(date1, date2);
-
+            showDialog();
 
         } else {
 
@@ -160,5 +162,12 @@ public class JaspersoftController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void showDialog() {
+        Alert info = new Alert(Alert.AlertType.INFORMATION);
+        info.setHeaderText("ÉXITO");
+        info.setContentText("Se ha generado un reporte en PDF.");
+        info.showAndWait();
     }
 }

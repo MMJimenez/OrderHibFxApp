@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -27,35 +28,39 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="2.0" prefHeight="2.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="generate1Button" mnemonicParsing="false" onAction="#generateProduct" prefWidth="83.0" text="Ver informe" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Button fx:id="generate2Button" mnemonicParsing="false" onAction="#generateToday" prefHeight="25.0" prefWidth="83.0" text="Ver informe" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Button fx:id="generate3Button" mnemonicParsing="false" onAction="#generateDate" prefHeight="25.0" prefWidth="83.0" text="Ver informe" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-            <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="97.0" text="VOLVER" GridPane.columnIndex="3" GridPane.rowIndex="9" />
-            <DatePicker fx:id="dateUntil" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <DatePicker fx:id="dateFrom" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <Label text="Desde:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Label text="Hasta:" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Label text="Reporte de productos:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Label text="Reporte de comandas de hoy:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label text="Reporte de comandas entre fechas:" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Button fx:id="generate4Button" mnemonicParsing="false" onAction="#generateProductPDF" prefWidth="83.0" text="Generar PDF" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <Button fx:id="generate5Button" mnemonicParsing="false" onAction="#generateTodayPDF" prefWidth="83.0" text="Generar PDF" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <Button fx:id="generate6Button" mnemonicParsing="false" onAction="#generateDatePDF" prefWidth="83.0" text="Generar PDF" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+            <Button fx:id="generate1Button" mnemonicParsing="false" onAction="#generateProduct" prefWidth="83.0" text="Ver informe" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button fx:id="generate2Button" mnemonicParsing="false" onAction="#generateToday" prefHeight="25.0" prefWidth="83.0" text="Ver informe" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button fx:id="generate3Button" mnemonicParsing="false" onAction="#generateDate" prefHeight="25.0" prefWidth="83.0" text="Ver informe" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="97.0" text="VOLVER" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+            <DatePicker fx:id="dateUntil" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <DatePicker fx:id="dateFrom" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Label text="Desde:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="Hasta:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label text="Reporte de productos:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label text="Reporte de comandas de hoy:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label text="Reporte de comandas entre fechas:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Button fx:id="generate4Button" mnemonicParsing="false" onAction="#generateProductPDF" prefWidth="83.0" text="Generar PDF" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Button fx:id="generate5Button" mnemonicParsing="false" onAction="#generateTodayPDF" prefWidth="83.0" text="Generar PDF" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Button fx:id="generate6Button" mnemonicParsing="false" onAction="#generateDatePDF" prefWidth="83.0" text="Generar PDF" GridPane.columnIndex="4" GridPane.rowIndex="6" />
          </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
       </GridPane>
    </center>
    <top>
-      <Label text="GENERAR REPORTE JASPERSOFT" textAlignment="CENTER" textFill="#2d2d2d" underline="true" BorderPane.alignment="CENTER">
+      <Label text="GENERAR REPORTE JASPERSOFT" textAlignment="CENTER" textFill="#2d2d2d" BorderPane.alignment="CENTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
+         <BorderPane.margin>
+            <Insets top="40.0" />
+         </BorderPane.margin>
       </Label>
    </top>
 </BorderPane>

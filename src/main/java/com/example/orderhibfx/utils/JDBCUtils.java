@@ -10,8 +10,8 @@ public class JDBCUtils {
     static {
         //TODO: Cambiar el usuario y contraseña si es necesario
         String url = "jdbc:mysql://localhost:3306/breakfast";
-        String user = "root";
-        String password = "root";
+        String user = "newuser";
+        String password = "newuser";
         try {
             con = DriverManager.getConnection(url, user, password);
             System.out.println("Conexion Satisfactoria");
