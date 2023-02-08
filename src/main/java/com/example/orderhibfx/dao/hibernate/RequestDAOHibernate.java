@@ -5,7 +5,6 @@ import com.example.orderhibfx.utils.DAO;
 import com.example.orderhibfx.utils.HibernateUtil;
 import org.hibernate.Transaction;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RequestDAOHibernate implements DAO<Request> {
