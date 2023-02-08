@@ -35,8 +35,7 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 
-
-import static com.example.orderhibfx.InformationReport.showReportMenu;
+import static com.example.orderhibfx.InformationReport.*;
 
 //import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.parameters;
 
@@ -78,13 +77,8 @@ public class JaspersoftController implements Initializable {
         showReportMenu();
     }
 
-    public void generateToday(ActionEvent actionEvent) throws JRException {
-        List<Request> requests = new ArrayList<>();
-        RequestDAO requestDAO = new RequestDAO();
-        requests = requestDAO.getAllToday();
-
-
-
+    public void generateToday(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
+        showReportRequestToday();
     }
 
     public void generateDate(ActionEvent actionEvent) {
@@ -120,15 +114,15 @@ public class JaspersoftController implements Initializable {
     }
 
     public void generateProductPDF(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
-
+        pdfReportProduct();
     }
 
     public void generateTodayPDF(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
-
+        pdfReportRequestToday();
     }
 
     public void generateDatePDF(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
-
+        pdfReportRequestbyDate();
     }
 
     public void back(ActionEvent actionEvent) {

@@ -18,8 +18,6 @@ public class InformationReport {
 
         HashMap hm = new HashMap();
 
-        //hm.put("tipo", tipo);
-
         JasperReport report = JasperCompileManager.compileReport("src/main/resources/reports/menu_products.jrxml");
 
         JasperPrint print = JasperFillManager.fillReport(
@@ -39,9 +37,7 @@ public class InformationReport {
 
         HashMap hm = new HashMap();
 
-        //hm.put("tipo", tipo);
-
-        JasperReport report = JasperCompileManager.compileReport("src/main/resources/reports/product-tables.jrxml");
+        JasperReport report = JasperCompileManager.compileReport("src/main/resources/reports/request_today_report.jrxml");
 
         JasperPrint print = JasperFillManager.fillReport(
                 report,
@@ -77,13 +73,12 @@ public class InformationReport {
         System.out.print("Done!");
     }
 
-    public static void pdfReport(String tipo) throws JRException, ClassNotFoundException, SQLException {
+    public static void pdfReportProduct() throws JRException, ClassNotFoundException, SQLException {
 
         HashMap hm = new HashMap();
 
-        hm.put("tipo", tipo);
 
-        String report = "Pokemon.jasper";
+        JasperReport report = JasperCompileManager.compileReport("src/main/resources/reports/menu_products.jrxml");
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(
                 report,
@@ -93,11 +88,51 @@ public class InformationReport {
 
         JRPdfExporter exp = new JRPdfExporter();
         exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-        exp.setExporterOutput(new SimpleOutputStreamExporterOutput("pokeball.pdf"));
+        exp.setExporterOutput(new SimpleOutputStreamExporterOutput("Menu.pdf"));
         SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
         exp.setConfiguration(conf);
         exp.exportReport();
+    }
 
-        System.out.print("Done!");
+    public static void pdfReportRequestToday() throws JRException, ClassNotFoundException, SQLException {
+
+        HashMap hm = new HashMap();
+
+
+        JasperReport report = JasperCompileManager.compileReport("src/main/resources/reports/request_today_report.jrxml");
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(
+                report,
+                hm,
+                JDBCUtils.getConnection()
+        );
+
+        JRPdfExporter exp = new JRPdfExporter();
+        exp.setExporterInput(new SimpleExporterInput(jasperPrint));
+        exp.setExporterOutput(new SimpleOutputStreamExporterOutput("ComandasDeHoy.pdf"));
+        SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
+        exp.setConfiguration(conf);
+        exp.exportReport();
+    }
+
+    public static void pdfReportRequestbyDate() throws JRException, ClassNotFoundException, SQLException {
+
+        HashMap hm = new HashMap();
+
+
+        JasperReport report = JasperCompileManager.compileReport("src/main/resources/reports/request_today_report.jrxml");
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(
+                report,
+                hm,
+                JDBCUtils.getConnection()
+        );
+
+        JRPdfExporter exp = new JRPdfExporter();
+        exp.setExporterInput(new SimpleExporterInput(jasperPrint));
+        exp.setExporterOutput(new SimpleOutputStreamExporterOutput("ComandasPorFecha.pdf"));
+        SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
+        exp.setConfiguration(conf);
+        exp.exportReport();
     }
 }
