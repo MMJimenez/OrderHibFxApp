@@ -114,14 +114,5 @@ public class RequestDAOHibernate implements DAO<Request> {
             return (ArrayList<String>) q.list();
         }
     }
-
-    public ArrayList<Request> getAllBetweenDates(LocalDate start, LocalDate end) {
-        try(var s = HibernateUtil.getSessionFactory().openSession()){
-            var q = s.createQuery("from Request as rq where rq.date between :start and :end");
-            q.setParameter("start", start);
-            q.setParameter("end", end);
-            return (ArrayList<Request>) q.list();
-        }
-    }
 }
 

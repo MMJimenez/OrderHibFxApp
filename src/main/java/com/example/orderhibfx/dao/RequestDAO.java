@@ -150,13 +150,4 @@ public class RequestDAO extends DataBase implements DAO<Request> {
         }
         return null;
     }
-
-    public ArrayList<Request> getAllBetweenDates(LocalDate start, LocalDate end) {
-        if (getSelectedDB().equals(HIBERNATE)) {
-            return new RequestDAOHibernate().getAllBetweenDates(start, end);
-        } if (getSelectedDB().equals(OBJECTDB)) {
-            return new RequestDAOObjectDB().getAllBetweenDates(start, end);
-        }
-        return null;
-    }
 }

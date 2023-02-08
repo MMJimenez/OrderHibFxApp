@@ -10,6 +10,7 @@ import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.HashMap;
 
 public class InformationReport {
@@ -52,13 +53,19 @@ public class InformationReport {
         System.out.print("Done!");
     }
 
-    public static void showReportRequestBetweenTwoDates(String tipo) throws JRException, ClassNotFoundException, SQLException {
+    public static void showReportRequestBetweenTwoDates(LocalDate date1, LocalDate date2) throws JRException, ClassNotFoundException, SQLException {
 
         HashMap hm = new HashMap();
 
-        //hm.put("tipo", tipo);
+        //Pasar las fechas a java.sql.Date
+        java.sql.Date date1sql = java.sql.Date.valueOf(date1);
+        java.sql.Date date2sql = java.sql.Date.valueOf(date2);
 
-        JasperReport report = JasperCompileManager.compileReport("src/main/resources/jasper_reports/product-tables.jrxml");
+
+        hm.put("ParameterInicio", date1sql);
+        hm.put("ParameterFin", date2sql);
+
+        JasperReport report = JasperCompileManager.compileReport("src/main/resources/reports/request_by_date.jrxml");
 
         JasperPrint print = JasperFillManager.fillReport(
                 report,
@@ -115,12 +122,12 @@ public class InformationReport {
         exp.exportReport();
     }
 
-    public static void pdfReportRequestbyDate() throws JRException, ClassNotFoundException, SQLException {
+    public static void pdfReportRequestbyDate(LocalDate date1, LocalDate date2) throws JRException, ClassNotFoundException, SQLException {
 
         HashMap hm = new HashMap();
 
 
-        JasperReport report = JasperCompileManager.compileReport("src/main/resources/reports/request_today_report.jrxml");
+        JasperReport report = JasperCompileManager.compileReport("src/main/resources/reports/request_by_date.jrxml");
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(
                 report,

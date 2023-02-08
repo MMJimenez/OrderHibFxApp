@@ -81,7 +81,7 @@ public class JaspersoftController implements Initializable {
         showReportRequestToday();
     }
 
-    public void generateDate(ActionEvent actionEvent) {
+    public void generateDate(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
         if (dateFrom.getValue() != null && dateUntil.getValue() != null) {
 
             LocalDate date1 = dateFrom.getValue();
@@ -94,9 +94,7 @@ public class JaspersoftController implements Initializable {
                 date2 = aux;
             }
 
-            List<Request> requests = new ArrayList<>();
-            RequestDAO requestDAO = new RequestDAO();
-            requests = requestDAO.getAllBetweenDates(date1, date2);
+            showReportRequestBetweenTwoDates(date1, date2);
 
         } else {
 
@@ -122,7 +120,34 @@ public class JaspersoftController implements Initializable {
     }
 
     public void generateDatePDF(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
-        pdfReportRequestbyDate();
+        if (dateFrom.getValue() != null && dateUntil.getValue() != null) {
+
+            LocalDate date1 = dateFrom.getValue();
+            LocalDate date2 = dateUntil.getValue();
+
+            // Si la fecha 1 es despues que la fecha 2 se cambian para que no haya error
+            if (date1.isAfter(date2)) {
+                LocalDate aux = date1;
+                date1 = date2;
+                date2 = aux;
+            }
+
+            pdfReportRequestbyDate(date1, date2);
+
+
+        } else {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("");
+            alert.setContentText("Rellena los campos de fecha");
+
+            ButtonType buttonTypeOk = new ButtonType("OK");
+
+            alert.getButtonTypes().setAll(buttonTypeOk);
+
+            alert.showAndWait();
+        }
     }
 
     public void back(ActionEvent actionEvent) {
